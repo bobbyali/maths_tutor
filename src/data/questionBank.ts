@@ -16,14 +16,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Primes', 'HCF', 'LCM', 'Cube Constraints'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2022',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q10',
-      sourceLabel: 'Edexcel GCSE Higher June 2022 Paper 1H, Q10',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hjune2022.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Prime Factors & Cube Constraints",
+      isOfficialPublicArchive: false
     },
     hints: [
       'For HCF, take the lowest power of each common prime factor.',
@@ -79,8 +74,8 @@ export const QUESTION_BANK: Question[] = [
       series: '2021',
       paper: 'Junior Mathematical Challenge',
       questionNumber: 'Q23',
-      sourceLabel: 'UKMT Junior Mathematical Challenge 2021, Q23',
-      citationUrl: 'https://ukmt.org.uk/competitions/solo/junior-mathematical-challenge/archive',
+      sourceLabel: "UKMT Junior Mathematical Challenge 2021, Q23",
+      citationUrl: "https://ukmt.org.uk/competitions/solo/junior-mathematical-challenge/archive",
       isOfficialPublicArchive: true
     },
     hints: [
@@ -144,14 +139,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Recurring Decimals', 'Proof', 'Fractions'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'November 2021',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q15',
-      sourceLabel: 'Edexcel GCSE Higher Nov 2021 Paper 1H, Q15',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hnov2021.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 7/8 Stretch • Recurring Decimal Proof",
+      isOfficialPublicArchive: false
     },
     hints: [
       'Let \\(x = 0.2454545...\\). Notice that the recurring part has 2 digits (4 and 5).',
@@ -199,14 +189,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Surds', 'Rationalising', 'Grade 9'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2022',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q20',
-      sourceLabel: 'Edexcel GCSE Higher June 2022 Paper 1H, Q20',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hjune2022.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Binomial Surd Conjugates",
+      isOfficialPublicArchive: false
     },
     hints: [
       'First expand the denominator \\((3 - \\sqrt{2})^2\\). Remember \\((p - q)^2 = p^2 - 2pq + q^2\\).',
@@ -256,14 +241,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Indices', 'Negative Powers', 'Fractional Powers'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'AQA',
-      series: 'June 2021',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q16',
-      sourceLabel: 'AQA GCSE Higher June 2021 Paper 1H, Q16',
-      citationUrl: 'https://www.physicsandmathstutor.com/pdf-pages/?pdf=https%3A%2F%2Fpmt.physicsandmathstutor.com%2Fdownload%2FMaths%2FGCSE%2FPast-Papers%2FAQA%2FPaper-1%2FJune%25202021%2520QP%2520-%2520Paper%25201H%2520AQA%2520Maths%2520GCSE.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Non-linear Index Equations",
+      isOfficialPublicArchive: false
     },
     hints: [
       'Express every number in terms of base 3: \\(9 = 3^2\\) and \\(\\sqrt{3} = 3^{1/2}\\).',
@@ -308,14 +288,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Bounds', 'Error Intervals', 'Calculator'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'November 2021',
-      paper: 'Paper 2H (Calc)',
-      questionNumber: 'Q14',
-      sourceLabel: 'Edexcel GCSE Higher Nov 2021 Paper 2H, Q14',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/2hnov2021.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Upper & Lower Bounds of Quotients",
+      isOfficialPublicArchive: false
     },
     hints: [
       'To maximize a fraction \\(\\frac{u^2}{2a}\\), you need the MAXIMUM possible numerator and MINIMUM possible denominator.',
@@ -363,14 +338,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Quadratics', 'Completing the Square', 'Turning Point'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2022',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q18',
-      sourceLabel: 'Edexcel GCSE Higher June 2022 Paper 1H, Q18',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hjune2022.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Completing the Square & Turning Points",
+      isOfficialPublicArchive: false
     },
     hints: [
       'First factor out 2 from the first two terms: \\(2[x^2 - 6x] + 7\\).',
@@ -423,14 +393,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Simultaneous Equations', 'Circles', 'Quadratics', 'Grade 9'],
     isMorningQuickEligible: false,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2023',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q21',
-      sourceLabel: 'Edexcel GCSE Higher June 2023 Paper 1H, Q21',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hjune2023.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Non-Linear Simultaneous Equations",
+      isOfficialPublicArchive: false
     },
     hints: [
       'Rearrange the linear equation to make \\(y\\) the subject: \\(y = 2x + 5\\).',
@@ -488,14 +453,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Algebraic Fractions', 'Quadratics', 'Grade 9'],
     isMorningQuickEligible: false,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2019',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q21',
-      sourceLabel: 'Edexcel GCSE Higher June 2019 Paper 1H, Q21',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hjune2019.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Algebraic Fractions & Quadratic Roots",
+      isOfficialPublicArchive: false
     },
     hints: [
       'Multiply the entire equation by the common denominator \\((x + 1)(x - 2)\\) to eliminate all fractions.',
@@ -545,14 +505,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Proof', 'Consecutive Integers', 'Multiple of 8'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'November 2022',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q17',
-      sourceLabel: 'Edexcel GCSE Higher Nov 2022 Paper 1H, Q17',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hnov2022.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Algebraic Number Proof",
+      isOfficialPublicArchive: false
     },
     hints: [
       'Let two consecutive odd integers be \\(2n + 1\\) and \\(2n + 3\\) (where \\(n\\) is an integer).',
@@ -602,14 +557,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Functions', 'Inverse', 'Composite', 'Grade 9'],
     isMorningQuickEligible: false,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2023',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q22',
-      sourceLabel: 'Edexcel GCSE Higher June 2023 Paper 1H, Q22',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hjune2023.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Composite & Inverse Functions",
+      isOfficialPublicArchive: false
     },
     hints: [
       'For (a), set \\(y = \\frac{2x}{x - 1}\\), multiply by \\(x - 1\\), collect all \\(x\\) terms on one side, and factorise.',
@@ -662,14 +612,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Sequences', 'Quadratic Sequence', 'Nth Term'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2022',
-      paper: 'Paper 2H (Calc)',
-      questionNumber: 'Q17',
-      sourceLabel: 'Edexcel GCSE Higher June 2022 Paper 2H, Q17',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/2hjune2022.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Quadratic Sequences (Second Differences)",
+      isOfficialPublicArchive: false
     },
     hints: [
       'Find the first differences: \\(13-3=10\\), \\(27-13=14\\), \\(45-27=18\\).',
@@ -722,14 +667,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Proportion', 'Inverse Square Law', 'Formulas'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2023',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q17',
-      sourceLabel: 'Edexcel GCSE Higher June 2023 Paper 1H, Q17',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hjune2023.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Non-Linear Proportionality",
+      isOfficialPublicArchive: false
     },
     hints: [
       'Write the proportional statement: \\(y = \\frac{k}{x^2}\\).',
@@ -774,14 +714,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Percentages', 'Compound Growth', 'Multipliers'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'November 2022',
-      paper: 'Paper 2H (Calc)',
-      questionNumber: 'Q11',
-      sourceLabel: 'Edexcel GCSE Higher Nov 2022 Paper 2H, Q11',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/2hnov2022.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Compound Growth & Reverse Percentages",
+      isOfficialPublicArchive: false
     },
     hints: [
       'Multiply \\(8000\\) by \\(1.05\\) to find the value at the end of the first year.',
@@ -829,14 +764,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Circle Theorems', 'Alternate Segment', 'Angle Reasons'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2018',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q16',
-      sourceLabel: 'Edexcel GCSE Higher June 2018 Paper 1H, Q16',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hjune2018.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Multi-Step Circle Theorems",
+      isOfficialPublicArchive: false
     },
     hints: [
       'Use the theorem: "Angle at centre is twice the angle at the circumference subtended by the same arc" to find angle \\(BDC\\) or \\(BAC\\).',
@@ -881,14 +811,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Trigonometry', 'Cosine Rule', 'Area Formula'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2023',
-      paper: 'Paper 2H (Calc)',
-      questionNumber: 'Q15',
-      sourceLabel: 'Edexcel GCSE Higher June 2023 Paper 2H, Q15',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/2hjune2023.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Sine & Cosine Rule in Non-Right Triangles",
+      isOfficialPublicArchive: false
     },
     hints: [
       'Two sides and the included angle are known (SAS): use the Cosine Rule \\(b^2 = a^2 + c^2 - 2ac \\cos B\\).',
@@ -938,14 +863,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['3D Geometry', 'Space Diagonal', 'Trigonometry', 'Grade 9'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2022',
-      paper: 'Paper 2H (Calc)',
-      questionNumber: 'Q21',
-      sourceLabel: 'Edexcel GCSE Higher June 2022 Paper 2H, Q21',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/2hjune2022.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • 3D Pythagoras & Trigonometry",
+      isOfficialPublicArchive: false
     },
     hints: [
       'In a cuboid, the space diagonal satisfies \\(AG^2 = l^2 + w^2 + h^2\\).',
@@ -990,14 +910,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Vectors', 'Parallelogram', 'Ratios', 'Grade 9'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'November 2020',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q20',
-      sourceLabel: 'Edexcel GCSE Higher Nov 2020 Paper 1H, Q20',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hnov2020.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Geometric Vector Proof (Collinearity)",
+      isOfficialPublicArchive: false
     },
     hints: [
       'In a parallelogram, opposite sides are equal vectors: \\(\\vec{BC} = \\vec{OA} = \\mathbf{a}\\) and \\(\\vec{AC} = \\vec{OB} = \\mathbf{b}\\).',
@@ -1050,8 +965,8 @@ export const QUESTION_BANK: Question[] = [
       series: 'June 2015',
       paper: 'Paper 1H (Non-Calc)',
       questionNumber: 'Q19',
-      sourceLabel: 'Edexcel GCSE Higher June 2015 Paper 1H, Q19 ("Hannah\'s Sweets")',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hjune2015.pdf',
+      sourceLabel: "Edexcel GCSE Higher June 2015 Paper 1H, Q19 (\"Hannah's Sweets\")",
+      citationUrl: "https://www.physicsandmathstutor.com/maths-revision/gcse-edexcel/papers/",
       isOfficialPublicArchive: true
     },
     hints: [
@@ -1102,14 +1017,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Venn Diagrams', 'Set Notation', 'Conditional Probability'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2023',
-      paper: 'Paper 2H (Calc)',
-      questionNumber: 'Q14',
-      sourceLabel: 'Edexcel GCSE Higher June 2023 Paper 2H, Q14',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/2hjune2023.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Conditional Probability & Sets",
+      isOfficialPublicArchive: false
     },
     hints: [
       'List members: \\(A = \\{3, 6, 9, 12\\}\\) and \\(B = \\{2, 4, 6, 8, 10, 12\\}\\).',
@@ -1162,14 +1072,9 @@ export const QUESTION_BANK: Question[] = [
     tags: ['Histograms', 'Frequency Density', 'Statistics'],
     isMorningQuickEligible: true,
     citation: {
-      sourceType: 'past_paper',
-      examBoard: 'Edexcel',
-      series: 'June 2022',
-      paper: 'Paper 1H (Non-Calc)',
-      questionNumber: 'Q15',
-      sourceLabel: 'Edexcel GCSE Higher June 2022 Paper 1H, Q15',
-      citationUrl: 'https://www.mathsgenie.co.uk/papers/1hjune2022.pdf',
-      isOfficialPublicArchive: true
+      sourceType: 'custom_stretch',
+      sourceLabel: "GCSE Grade 8/9 Stretch • Histograms & Frequency Density",
+      isOfficialPublicArchive: false
     },
     hints: [
       'Frequency Density = Frequency \\(\\div\\) Class Width.',
@@ -1222,8 +1127,8 @@ export const QUESTION_BANK: Question[] = [
       series: '2022',
       paper: 'Junior Mathematical Challenge',
       questionNumber: 'Q22',
-      sourceLabel: 'UKMT Junior Mathematical Challenge 2022, Q22',
-      citationUrl: 'https://ukmt.org.uk/competitions/solo/junior-mathematical-challenge/archive',
+      sourceLabel: "UKMT Junior Mathematical Challenge 2022, Q22",
+      citationUrl: "https://ukmt.org.uk/competitions/solo/junior-mathematical-challenge/archive",
       isOfficialPublicArchive: true
     },
     hints: [
@@ -1279,8 +1184,8 @@ export const QUESTION_BANK: Question[] = [
       series: '2023',
       paper: 'Intermediate Mathematical Challenge',
       questionNumber: 'Q21',
-      sourceLabel: 'UKMT Intermediate Mathematical Challenge 2023, Q21',
-      citationUrl: 'https://ukmt.org.uk/competitions/solo/intermediate-mathematical-challenge/archive',
+      sourceLabel: "UKMT Intermediate Mathematical Challenge 2023, Q21",
+      citationUrl: "https://ukmt.org.uk/competitions/solo/intermediate-mathematical-challenge/archive",
       isOfficialPublicArchive: true
     },
     hints: [
@@ -1332,8 +1237,8 @@ export const QUESTION_BANK: Question[] = [
     isMorningQuickEligible: true,
     citation: {
       sourceType: 'custom_stretch',
-      sourceLabel: 'Custom Stretch Problem (Olympiad / UKMT Style)',
-      citationUrl: 'https://en.wikipedia.org/wiki/Simon%27s_Favorite_Factoring_Trick',
+      sourceLabel: "Olympiad Stretch • Simon's Favorite Factoring Trick",
+      citationUrl: "https://en.wikipedia.org/wiki/Simon%27s_Favorite_Factoring_Trick",
       isOfficialPublicArchive: false
     },
     hints: [
