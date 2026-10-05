@@ -4,13 +4,13 @@ import { MathText } from '../common/MathText';
 import { CitationLink } from '../common/CitationLink';
 import { 
   Eye, 
+  EyeOff,
   HelpCircle, 
   CheckCircle2, 
   XCircle, 
   Calculator, 
-  FileText,
-  ChevronDown,
-  ChevronUp
+  ChevronDown, 
+  ChevronUp 
 } from 'lucide-react';
 
 interface ProblemCardProps {
@@ -133,22 +133,44 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
               <div className="space-y-2">
                 {question.hints.slice(0, hintLevel).map((h, i) => (
                   <div key={i} className="bg-amber-50 border border-amber-200 p-3.5 rounded-xl text-xs sm:text-sm text-amber-950 animate-fadeIn">
-                    <p className="font-bold text-amber-800 mb-0.5">Hint {i + 1}:</p>
+                    <div className="flex items-center justify-between mb-1">
+                      <p className="font-bold text-amber-800">Hint {i + 1}:</p>
+                      <button
+                        onClick={() => setHintLevel(0)}
+                        className="text-[11px] font-semibold text-amber-700 hover:text-amber-900 flex items-center gap-1 hover:underline cursor-pointer"
+                        title="Hide hints so students cannot see"
+                      >
+                        <EyeOff className="w-3 h-3" /> Hide Hint
+                      </button>
+                    </div>
                     <MathText content={h} />
                   </div>
                 ))}
               </div>
             )}
 
-            {hintLevel < question.hints.length && !showSolution && (
-              <button
-                onClick={() => setHintLevel(prev => prev + 1)}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 hover:text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-200 px-3 py-1.5 rounded-xl transition-colors"
-              >
-                <HelpCircle className="w-3.5 h-3.5" />
-                {hintLevel === 0 ? 'Give a Hint / Tip' : 'Give Next Hint'}
-              </button>
-            )}
+            <div className="flex items-center gap-2 flex-wrap">
+              {hintLevel < question.hints.length && !showSolution && (
+                <button
+                  onClick={() => setHintLevel(prev => prev + 1)}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 hover:text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-200 px-3 py-1.5 rounded-xl transition-colors cursor-pointer"
+                >
+                  <HelpCircle className="w-3.5 h-3.5" />
+                  {hintLevel === 0 ? 'Give a Hint / Tip' : 'Give Next Hint'}
+                </button>
+              )}
+
+              {hintLevel > 0 && (
+                <button
+                  onClick={() => setHintLevel(0)}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 border border-slate-200 px-3 py-1.5 rounded-xl transition-colors cursor-pointer"
+                  title="Hide hints immediately"
+                >
+                  <EyeOff className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Hide Hints</span>
+                </button>
+              )}
+            </div>
           </div>
         )}
 
