@@ -357,6 +357,7 @@ export const App: React.FC = () => {
               onClose={() => setIsMarkingModalOpen(false)}
               questions={problemSet}
               student={activeStudent}
+              allStudents={students}
               topicId={currentTopicId}
               onSessionLogged={() => {
                 handleDataRefresh();
