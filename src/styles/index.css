@@ -33,43 +33,6 @@
   box-sizing: border-box !important;
 }
 
-/* Ensure KaTeX SVGs (such as \sqrt radical symbols and stretchy brackets) render with correct dimensions */
-.katex svg {
-  display: block !important;
-  position: absolute !important;
-  width: 100% !important;
-  height: 100% !important;
-  min-height: 100% !important;
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-
-.katex svg path {
-  stroke: none !important;
-  fill: currentColor !important;
-}
-
-.katex .hide-tail {
-  width: 100% !important;
-  position: relative !important;
-  overflow: hidden !important;
-  display: inline-block !important;
-}
-
-.katex .hide-tail > svg {
-  height: 100% !important;
-  min-height: 100% !important;
-  min-width: 100% !important;
-}
-
-.katex .vlist-t {
-  border-collapse: collapse;
-}
-
-.katex .sqrt {
-  display: inline-block;
-}
-
 .katex-display {
   margin: 0.75em 0 !important;
   overflow-x: auto;
