@@ -198,7 +198,9 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
                 {question.solution.steps.map((st, i) => (
                   <div key={i} className="bg-white p-3 rounded-xl border border-indigo-100 text-xs sm:text-sm">
                     <div className="flex items-center justify-between gap-2 mb-1">
-                      <p className="font-medium text-slate-800">{st.description}</p>
+                      <div className="font-medium text-slate-800">
+                        <MathText content={st.description} />
+                      </div>
                       {st.markTag && (
                         <span className="text-[10px] font-bold text-brand-700 bg-brand-50 px-1.5 py-0.5 rounded border border-brand-200">
                           {st.markTag}
@@ -218,9 +220,9 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
               </div>
 
               {question.solution.examinerTips && (
-                <p className="text-xs text-indigo-900 bg-indigo-100/60 p-2.5 rounded-lg italic">
-                  💡 <strong>Examiner Note:</strong> {question.solution.examinerTips}
-                </p>
+                <div className="text-xs text-indigo-900 bg-indigo-100/60 p-2.5 rounded-lg italic">
+                  💡 <strong>Examiner Note:</strong> <MathText content={question.solution.examinerTips} />
+                </div>
               )}
             </div>
           )}

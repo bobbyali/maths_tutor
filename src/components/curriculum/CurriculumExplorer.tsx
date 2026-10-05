@@ -124,9 +124,9 @@ export const CurriculumExplorer: React.FC<CurriculumExplorerProps> = ({
                   <h3 className="text-base font-bold text-slate-900 leading-snug">
                     {topic.title}
                   </h3>
-                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                    {topic.description}
-                  </p>
+                  <div className="text-xs text-slate-500 mt-1 leading-relaxed">
+                    <MathText content={topic.description} />
+                  </div>
                 </div>
 
                 {/* Key Formulas */}

@@ -295,7 +295,9 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
                 {question.solution.steps.map((step, idx) => (
                   <div key={idx} className="bg-white p-3.5 rounded-xl border border-indigo-100 text-sm">
                     <div className="flex items-center justify-between gap-2 mb-1">
-                      <p className="font-medium text-slate-800">{step.description}</p>
+                      <div className="font-medium text-slate-800">
+                        <MathText content={step.description} />
+                      </div>
                       {step.markTag && (
                         <span className="text-[11px] font-bold text-brand-700 bg-brand-50 px-2 py-0.5 rounded border border-brand-200">
                           {step.markTag}
@@ -315,9 +317,9 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
               </div>
 
               {question.solution.examinerTips && (
-                <p className="text-xs text-indigo-900 bg-indigo-100/60 p-3 rounded-lg italic">
-                  💡 <strong>Examiner Tip:</strong> {question.solution.examinerTips}
-                </p>
+                <div className="text-xs text-indigo-900 bg-indigo-100/60 p-3 rounded-lg italic">
+                  💡 <strong>Examiner Tip:</strong> <MathText content={question.solution.examinerTips} />
+                </div>
               )}
             </div>
           )}
