@@ -25,20 +25,84 @@ import {
   ArrowRight
 } from 'lucide-react';
 
+const getInitialTab = (): NavTab => {
+  const hash = window.location.hash.replace('#', '') as NavTab;
+  const validTabs: NavTab[] = ['dashboard', 'morning', 'practice', 'curriculum', 'history'];
+  return validTabs.includes(hash) ? hash : 'dashboard';
+};
+
 export const App: React.FC = () => {
   // State
   const [students, setStudents] = useState<StudentProfile[]>([]);
   const [activeStudentId, setActiveStudentId] = useState<string>('');
-  const [activeTab, setActiveTab] = useState<NavTab>('dashboard');
+  const [activeTab, setActiveTab] = useState<NavTab>(getInitialTab);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
 
-  // Practice state
-  const [problemSet, setProblemSet] = useState<Question[]>([]);
-  const [currentTopicId, setCurrentTopicId] = useState<string | undefined>(undefined);
+  // Practice state with sessionStorage persistence across refreshes
+  const [problemSet, setProblemSet] = useState<Question[]>(() => {
+    try {
+      const saved = sessionStorage.getItem('gcse_active_problem_set');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [currentTopicId, setCurrentTopicId] = useState<string | undefined>(() => {
+    try {
+      return sessionStorage.getItem('gcse_active_topic_id') || undefined;
+    } catch {
+      return undefined;
+    }
+  });
   const [isPrintView, setIsPrintView] = useState(false);
   const [isMarkingModalOpen, setIsMarkingModalOpen] = useState(false);
+
+  // Sync activeTab with URL hash
+  const changeTab = (tab: NavTab) => {
+    setActiveTab(tab);
+    if (window.location.hash !== `#${tab}`) {
+      window.location.hash = tab;
+    }
+  };
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '') as NavTab;
+      const validTabs: NavTab[] = ['dashboard', 'morning', 'practice', 'curriculum', 'history'];
+      if (validTabs.includes(hash)) {
+        setActiveTab(hash);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // Persist problem set to sessionStorage
+  useEffect(() => {
+    try {
+      if (problemSet.length > 0) {
+        sessionStorage.setItem('gcse_active_problem_set', JSON.stringify(problemSet));
+      } else {
+        sessionStorage.removeItem('gcse_active_problem_set');
+      }
+    } catch (e) {
+      console.error('Failed to save problem set to sessionStorage', e);
+    }
+  }, [problemSet]);
+
+  useEffect(() => {
+    try {
+      if (currentTopicId) {
+        sessionStorage.setItem('gcse_active_topic_id', currentTopicId);
+      } else {
+        sessionStorage.removeItem('gcse_active_topic_id');
+      }
+    } catch (e) {
+      console.error('Failed to save topic ID to sessionStorage', e);
+    }
+  }, [currentTopicId]);
 
   // Initialize and load storage
   useEffect(() => {
@@ -61,6 +125,8 @@ export const App: React.FC = () => {
     // Reset problem set when switching student
     setProblemSet([]);
     setCurrentTopicId(undefined);
+    sessionStorage.removeItem('gcse_active_problem_set');
+    sessionStorage.removeItem('gcse_active_topic_id');
   };
 
   const handleAddStudent = (data: Omit<StudentProfile, 'id' | 'createdAt'>) => {
@@ -83,7 +149,7 @@ export const App: React.FC = () => {
     const questions = GeneratorService.generateProblemSet(options);
     setProblemSet(questions);
     setCurrentTopicId(options.topicId);
-    setActiveTab('practice');
+    changeTab('practice');
   };
 
   const handlePracticeTopicFromCurriculum = (topicId: string) => {
@@ -121,7 +187,7 @@ export const App: React.FC = () => {
       {/* Main Navigation Bar */}
       <Navigation
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={changeTab}
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
         onOpenProfileModal={() => setIsProfileModalOpen(true)}
@@ -169,7 +235,7 @@ export const App: React.FC = () => {
                 {/* Quick Action Buttons */}
                 <div className="flex flex-wrap gap-2.5 w-full md:w-auto">
                   <button
-                    onClick={() => setActiveTab('morning')}
+                    onClick={() => changeTab('morning')}
                     className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
                   >
                     <Zap className="w-4 h-4 fill-white" />
@@ -177,7 +243,7 @@ export const App: React.FC = () => {
                   </button>
 
                   <button
-                    onClick={() => setActiveTab('practice')}
+                    onClick={() => changeTab('practice')}
                     className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
                   >
                     <FileText className="w-4 h-4" />
@@ -225,7 +291,7 @@ export const App: React.FC = () => {
                   Recent Tutoring Observations
                 </h3>
                 <button
-                  onClick={() => setActiveTab('history')}
+                  onClick={() => changeTab('history')}
                   className="text-xs font-semibold text-brand-600 hover:text-brand-800 flex items-center gap-1"
                 >
                   View full history <ArrowRight className="w-3 h-3" />
@@ -361,7 +427,7 @@ export const App: React.FC = () => {
               topicId={currentTopicId}
               onSessionLogged={() => {
                 handleDataRefresh();
-                setActiveTab('history');
+                changeTab('history');
               }}
             />
           </div>
