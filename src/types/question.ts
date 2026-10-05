@@ -8,7 +8,7 @@ export interface QuestionCitation {
   series?: string; // e.g. "June 2023" or "2022"
   paper?: string;  // e.g. "Paper 1H (Non-Calc)" or "Junior Challenge"
   questionNumber?: string | number; // e.g. "Q18" or "Q21"
-  citationUrl: string;
+  citationUrl?: string;
   sourceLabel: string; // e.g. "Edexcel 2023 Paper 1H, Q18"
   isOfficialPublicArchive: boolean;
 }

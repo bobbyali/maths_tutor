@@ -9,10 +9,27 @@ interface CitationLinkProps {
 
 export const CitationLink: React.FC<CitationLinkProps> = ({ citation, className = '' }) => {
   if (citation.sourceType === 'custom_stretch') {
+    if (citation.citationUrl) {
+      return (
+        <a
+          href={citation.citationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Learn more about this technique or theorem"
+          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100 hover:border-amber-300 transition-colors ${className}`}
+        >
+          <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+          <span className="font-semibold underline decoration-dotted underline-offset-2">
+            {citation.sourceLabel || 'Custom Stretch Question'}
+          </span>
+          <ExternalLink className="w-3 h-3 opacity-70" />
+        </a>
+      );
+    }
     return (
       <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200 ${className}`}>
         <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-        <span>Custom Stretch Question</span>
+        <span>{citation.sourceLabel || 'Custom Stretch Question'}</span>
       </span>
     );
   }
