@@ -272,6 +272,23 @@ export const TOPICS: Topic[] = [
 
   // --- GEOMETRY & MEASURES ---
   {
+    id: 'geo_pythagoras',
+    strandId: 'geometry',
+    title: "Pythagoras' Theorem (2D, Algebraic & Multi-Step)",
+    shortCode: 'G-PYT',
+    description: "Right-angled triangle theorem $a^2 + b^2 = c^2$, multi-step geometric problem solving with circle chords, coordinate distances, algebraic side lengths leading to quadratic equations, and UKMT lateral nets.",
+    tier: 'foundation_higher',
+    targetGrades: ['grade_5_6', 'grade_7', 'grade_8_9', 'ukmt_junior', 'ukmt_intermediate'],
+    recommendedYears: [7, 8, 9, 10, 11],
+    prerequisites: ['num_surds'],
+    keyFormulas: [
+      'a^2 + b^2 = c^2',
+      'd = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}',
+      '(x+a)^2 + (x+b)^2 = (x+c)^2'
+    ],
+    tags: ['Pythagoras', 'Triangles', 'Algebraic Geometry', 'Coordinate Geometry', 'Proofs']
+  },
+  {
     id: 'geo_circle_theorems',
     strandId: 'geometry',
     title: 'Circle Theorems & Geometric Proofs',

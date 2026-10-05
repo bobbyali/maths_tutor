@@ -2,6 +2,7 @@ import { Question } from '../types/question';
 import { DifficultyLevel } from '../types/curriculum';
 import { QUESTION_BANK } from '../data/questionBank';
 import { TOPICS } from '../data/curriculumData';
+import { StorageService } from './storageService';
 
 export interface SetGenerationOptions {
   mode: 'topic' | 'mixed_gcse' | 'ukmt' | 'smart';
@@ -12,16 +13,26 @@ export interface SetGenerationOptions {
 }
 
 export class GeneratorService {
+  static getAllQuestions(): Question[] {
+    try {
+      const custom = StorageService.getCustomQuestions();
+      return [...QUESTION_BANK, ...custom];
+    } catch {
+      return QUESTION_BANK;
+    }
+  }
+
   static getQuestionsByTopic(topicId: string): Question[] {
-    return QUESTION_BANK.filter(q => q.topicId === topicId);
+    return this.getAllQuestions().filter(q => q.topicId === topicId);
   }
 
   static generateProblemSet(options: SetGenerationOptions): Question[] {
+    const allQuestions = this.getAllQuestions();
     let chosen: Question[] = [];
 
     if (options.mode === 'topic' && options.topicId) {
       // 1. Direct matches for the requested topic
-      const topicMatches = QUESTION_BANK.filter(q => q.topicId === options.topicId);
+      const topicMatches = allQuestions.filter(q => q.topicId === options.topicId);
       chosen.push(...topicMatches);
 
       // 2. If we need more questions to fulfill the count, pull from the same strand
@@ -29,7 +40,7 @@ export class GeneratorService {
         const topicMeta = TOPICS.find(t => t.id === options.topicId);
         const strandId = topicMeta?.strandId;
         if (strandId) {
-          const strandMatches = QUESTION_BANK.filter(
+          const strandMatches = allQuestions.filter(
             q => q.strandId === strandId && !chosen.some(c => c.id === q.id)
           );
           // Shuffle strand matches
@@ -40,23 +51,23 @@ export class GeneratorService {
 
       // 3. Fallback if still under count
       if (chosen.length < options.count) {
-        const remaining = QUESTION_BANK.filter(q => !chosen.some(c => c.id === q.id));
+        const remaining = allQuestions.filter(q => !chosen.some(c => c.id === q.id));
         const shuffledRemaining = [...remaining].sort(() => 0.5 - Math.random());
         chosen.push(...shuffledRemaining.slice(0, options.count - chosen.length));
       }
     } else if (options.mode === 'mixed_gcse') {
       // Pick higher tier GCSE questions across Number, Algebra, Geometry
-      const pool = QUESTION_BANK.filter(q => q.difficulty === 'grade_7' || q.difficulty === 'grade_8_9');
+      const pool = allQuestions.filter(q => q.difficulty === 'grade_7' || q.difficulty === 'grade_8_9');
       const shuffled = [...pool].sort(() => 0.5 - Math.random());
       chosen = shuffled.slice(0, Math.min(options.count, pool.length));
     } else if (options.mode === 'ukmt') {
       // Pick lateral challenge questions
-      const pool = QUESTION_BANK.filter(q => q.difficulty === 'ukmt_junior' || q.difficulty === 'ukmt_intermediate');
+      const pool = allQuestions.filter(q => q.difficulty === 'ukmt_junior' || q.difficulty === 'ukmt_intermediate');
       const shuffled = [...pool].sort(() => 0.5 - Math.random());
       chosen = shuffled.slice(0, Math.min(options.count, pool.length));
     } else {
-      const shuffled = [...QUESTION_BANK].sort(() => 0.5 - Math.random());
-      chosen = shuffled.slice(0, Math.min(options.count, QUESTION_BANK.length));
+      const shuffled = [...allQuestions].sort(() => 0.5 - Math.random());
+      chosen = shuffled.slice(0, Math.min(options.count, allQuestions.length));
     }
 
     // Filter by calculator if explicitly requested
@@ -73,7 +84,8 @@ export class GeneratorService {
 
   static getMorningQuickQuestion(difficulty: DifficultyLevel): Question {
     // Filter for rapid morning questions (5-10 min)
-    let pool = QUESTION_BANK.filter(q => q.isMorningQuickEligible);
+    const all = this.getAllQuestions();
+    let pool = all.filter(q => q.isMorningQuickEligible);
 
     // Try to match student difficulty
     const targeted = pool.filter(q => q.difficulty === difficulty);
@@ -82,7 +94,7 @@ export class GeneratorService {
     }
 
     // Fallback to any morning eligible question
-    return pool[Math.floor(Math.random() * pool.length)] || QUESTION_BANK[0];
+    return pool[Math.floor(Math.random() * pool.length)] || all[0];
   }
 
   static getTopicTitle(topicId: string): string {

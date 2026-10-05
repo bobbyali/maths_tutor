@@ -1,5 +1,6 @@
 import { StudentProfile } from '../types/student';
 import { SessionRecord, TopicMasteryState, MorningStreak } from '../types/session';
+import { Question, CustomQuestionRequest } from '../types/question';
 import { DEFAULT_PROFILES } from '../data/defaultProfiles';
 import { TOPICS } from '../data/curriculumData';
 
@@ -8,6 +9,8 @@ const STORAGE_KEYS = {
   ACTIVE_STUDENT_ID: 'maths_tutor_active_student_id_v1',
   SESSIONS: 'maths_tutor_sessions_v1',
   STREAKS: 'maths_tutor_streaks_v1',
+  CUSTOM_REQUESTS: 'maths_tutor_custom_requests_v1',
+  CUSTOM_QUESTIONS: 'maths_tutor_custom_questions_v1',
 };
 
 export class StorageService {
@@ -212,6 +215,75 @@ export class StorageService {
     return masteryMap;
   }
 
+  // --- CUSTOM QUESTION REQUESTS ---
+  static getCustomRequests(): CustomQuestionRequest[] {
+    try {
+      const data = localStorage.getItem(STORAGE_KEYS.CUSTOM_REQUESTS);
+      if (data) {
+        return JSON.parse(data);
+      }
+    } catch (e) {
+      console.error('Error reading custom requests from storage', e);
+    }
+    return [];
+  }
+
+  static addCustomRequest(request: Omit<CustomQuestionRequest, 'id' | 'requestedAt' | 'status'>): CustomQuestionRequest {
+    const requests = this.getCustomRequests();
+    const newRequest: CustomQuestionRequest = {
+      ...request,
+      id: `req_${Date.now()}`,
+      requestedAt: new Date().toISOString(),
+      status: 'pending'
+    };
+    requests.unshift(newRequest);
+    localStorage.setItem(STORAGE_KEYS.CUSTOM_REQUESTS, JSON.stringify(requests));
+    return newRequest;
+  }
+
+  static deleteCustomRequest(id: string): void {
+    const requests = this.getCustomRequests().filter(r => r.id !== id);
+    localStorage.setItem(STORAGE_KEYS.CUSTOM_REQUESTS, JSON.stringify(requests));
+  }
+
+  static updateCustomRequestStatus(id: string, status: 'pending' | 'fulfilled'): void {
+    const requests = this.getCustomRequests();
+    const target = requests.find(r => r.id === id);
+    if (target) {
+      target.status = status;
+      localStorage.setItem(STORAGE_KEYS.CUSTOM_REQUESTS, JSON.stringify(requests));
+    }
+  }
+
+  // --- USER CREATED CUSTOM QUESTIONS ---
+  static getCustomQuestions(): Question[] {
+    try {
+      const data = localStorage.getItem(STORAGE_KEYS.CUSTOM_QUESTIONS);
+      if (data) {
+        return JSON.parse(data);
+      }
+    } catch (e) {
+      console.error('Error reading custom questions from storage', e);
+    }
+    return [];
+  }
+
+  static addCustomQuestion(question: Question): void {
+    const questions = this.getCustomQuestions();
+    const existingIndex = questions.findIndex(q => q.id === question.id);
+    if (existingIndex >= 0) {
+      questions[existingIndex] = question;
+    } else {
+      questions.push(question);
+    }
+    localStorage.setItem(STORAGE_KEYS.CUSTOM_QUESTIONS, JSON.stringify(questions));
+  }
+
+  static deleteCustomQuestion(id: string): void {
+    const questions = this.getCustomQuestions().filter(q => q.id !== id);
+    localStorage.setItem(STORAGE_KEYS.CUSTOM_QUESTIONS, JSON.stringify(questions));
+  }
+
   // --- JSON EXPORT / IMPORT BACKUP ---
   static exportBackup(): string {
     const backup = {
@@ -220,6 +292,8 @@ export class StorageService {
       students: this.getStudents(),
       activeStudentId: this.getActiveStudentId(),
       sessions: this.getSessions(),
+      customRequests: this.getCustomRequests(),
+      customQuestions: this.getCustomQuestions(),
       streaks: localStorage.getItem(STORAGE_KEYS.STREAKS) 
         ? JSON.parse(localStorage.getItem(STORAGE_KEYS.STREAKS)!) 
         : {}
@@ -238,6 +312,12 @@ export class StorageService {
       }
       if (data.sessions && Array.isArray(data.sessions)) {
         localStorage.setItem(STORAGE_KEYS.SESSIONS, JSON.stringify(data.sessions));
+      }
+      if (data.customRequests && Array.isArray(data.customRequests)) {
+        localStorage.setItem(STORAGE_KEYS.CUSTOM_REQUESTS, JSON.stringify(data.customRequests));
+      }
+      if (data.customQuestions && Array.isArray(data.customQuestions)) {
+        localStorage.setItem(STORAGE_KEYS.CUSTOM_QUESTIONS, JSON.stringify(data.customQuestions));
       }
       if (data.streaks) {
         localStorage.setItem(STORAGE_KEYS.STREAKS, JSON.stringify(data.streaks));

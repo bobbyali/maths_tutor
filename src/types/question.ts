@@ -49,3 +49,19 @@ export interface Question {
   solution: QuestionSolution;
   digitalAnswer?: DigitalAnswerValidation;
 }
+
+export type QuestionRequestStyle = 'gcse_multi_step' | 'morning_quick' | 'lateral_puzzle' | 'algebraic_proof';
+
+export interface CustomQuestionRequest {
+  id: string;
+  topicId: string;
+  topicTitle?: string;
+  customTopicName?: string;
+  targetStudentId?: string; // student id or 'all'
+  difficulty: DifficultyLevel;
+  style: QuestionRequestStyle;
+  notes: string;
+  count: number;
+  requestedAt: string;
+  status: 'pending' | 'fulfilled';
+}

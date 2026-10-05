@@ -753,6 +753,270 @@ export const QUESTION_BANK: Question[] = [
   // GEOMETRY & MEASURES
   // ==========================================
   {
+    id: 'q_geo_pythagoras_01',
+    topicId: 'geo_pythagoras',
+    strandId: 'geometry',
+    title: 'Algebraic Pythagoras: Quadratic Sides & Triangle Area',
+    prompt: 'A right-angled triangle has sides of length \\(x - 1\\text{ cm}\\) and \\(x + 6\\text{ cm}\\), with a hypotenuse of length \\(x + 7\\text{ cm}\\).\n\n(a) Show that \\(x^2 - 4x - 12 = 0\\).\n(b) Hence, find the value of \\(x\\) and calculate the area of the triangle.',
+    maxMarks: 5,
+    calculatorAllowed: false,
+    difficulty: 'grade_8_9',
+    tags: ['Pythagoras', 'Algebra', 'Quadratics', 'Area'],
+    isMorningQuickEligible: false,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'GCSE Grade 8/9 Stretch • Algebraic Pythagoras & Quadratics',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      "Apply Pythagoras' theorem: \\(a^2 + b^2 = c^2\\) where \\(c\\) is the hypotenuse \\((x + 7)\\).",
+      "Carefully expand the squared binomials \\((x - 1)^2\\), \\((x + 6)^2\\), and \\((x + 7)^2\\), then move all terms to one side.",
+      "Factorise the quadratic \\(x^2 - 4x - 12 = 0\\). Remember that a physical side length cannot be negative!"
+    ],
+    solution: {
+      steps: [
+        {
+          description: "Set up Pythagoras' equation with hypotenuse \\(x + 7\\):",
+          math: '(x - 1)^2 + (x + 6)^2 = (x + 7)^2',
+          markTag: 'M1'
+        },
+        {
+          description: 'Expand all three brackets:',
+          math: '(x^2 - 2x + 1) + (x^2 + 12x + 36) = x^2 + 14x + 49',
+          markTag: 'M1'
+        },
+        {
+          description: 'Collect like terms and rearrange to zero:',
+          math: '2x^2 + 10x + 37 = x^2 + 14x + 49 \\implies x^2 - 4x - 12 = 0',
+          markTag: 'A1 (Part a)'
+        },
+        {
+          description: 'Factorise the quadratic:',
+          math: '(x - 6)(x + 2) = 0 \\implies x = 6 \\text{ or } x = -2',
+          markTag: 'M1'
+        },
+        {
+          description: 'Reject \\(x = -2\\) since side \\(x - 1 > 0\\). With \\(x = 6\\), the sides are \\(5\\text{ cm}\\) and \\(12\\text{ cm}\\):',
+          math: '\\text{Area} = \\frac{1}{2} \\times 5 \\times 12 = 30\\text{ cm}^2',
+          markTag: 'A1 (Part b)'
+        }
+      ],
+      finalAnswer: 'x = 6, \\quad \\text{Area} = 30\\text{ cm}^2',
+      examinerTips: "Always write down a brief sentence explaining why the negative root is rejected: e.g. 'Since length must be positive, \\(x = 6\\)'."
+    },
+    digitalAnswer: {
+      expected: ['30', '30cm^2', '30 cm^2', 'x=6, area=30'],
+      type: 'number'
+    }
+  },
+  {
+    id: 'q_geo_pythagoras_02',
+    topicId: 'geo_pythagoras',
+    strandId: 'geometry',
+    title: 'Circle Geometry & Double Chord Pythagoras',
+    prompt: 'A circle with centre \\(O\\) has two parallel horizontal chords, \\(AB\\) and \\(CD\\).\nChord \\(AB\\) has length \\(16\\text{ cm}\\) and lies \\(6\\text{ cm}\\) from \\(O\\).\nChord \\(CD\\) lies \\(4\\text{ cm}\\) from \\(O\\) on the same side of the centre as \\(AB\\).\n\nCalculate the exact length of chord \\(CD\\). Give your answer in simplified surd form \\(a\\sqrt{b}\\).',
+    maxMarks: 4,
+    calculatorAllowed: false,
+    difficulty: 'grade_8_9',
+    tags: ['Circle Geometry', 'Pythagoras', 'Chords', 'Surds'],
+    isMorningQuickEligible: false,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'GCSE Grade 8/9 & Lateral Stretch • Circle Chords & Pythagoras',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'The perpendicular distance from the centre \\(O\\) bisects chord \\(AB\\) into two \\(8\\text{ cm}\\) segments.',
+      'Use the right-angled triangle formed by the radius, half-chord, and distance from \\(O\\) to find radius \\(r\\).',
+      'Use that same radius \\(r\\) in a new right-angled triangle with chord \\(CD\\) at distance \\(4\\text{ cm}\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Perpendicular from centre bisects chord \\(AB\\): half-chord is \\(8\\text{ cm}\\). Find circle radius \\(r\\):',
+          math: 'r^2 = 6^2 + 8^2 = 36 + 64 = 100 \\implies r = 10\\text{ cm}',
+          markTag: 'M1'
+        },
+        {
+          description: 'Form right-angled triangle for chord \\(CD\\) with distance \\(4\\text{ cm}\\) and half-chord \\(d\\):',
+          math: 'd^2 + 4^2 = r^2 = 100 \\implies d^2 + 16 = 100',
+          markTag: 'M1'
+        },
+        {
+          description: 'Solve for half-chord length \\(d\\):',
+          math: 'd^2 = 84 \\implies d = \\sqrt{84} = 2\\sqrt{21}\\text{ cm}',
+          markTag: 'A1'
+        },
+        {
+          description: 'The full chord length \\(CD\\) is double \\(d\\):',
+          math: 'CD = 2 \\times 2\\sqrt{21} = 4\\sqrt{21}\\text{ cm}',
+          markTag: 'A1'
+        }
+      ],
+      finalAnswer: 'CD = 4\\sqrt{21}\\text{ cm} \\quad (\\approx 18.33\\text{ cm})',
+      examinerTips: "Don't forget to double the half-chord at the end! The perpendicular from the centre always bisects any chord."
+    },
+    digitalAnswer: {
+      expected: ['4\\sqrt{21}', '4sqrt(21)', '4sqrt21', '18.33', '18.3'],
+      type: 'algebra'
+    }
+  },
+  {
+    id: 'q_geo_pythagoras_03',
+    topicId: 'geo_pythagoras',
+    strandId: 'geometry',
+    title: 'Proof: Equilateral Triangle Height & Exact Area',
+    prompt: 'An equilateral triangle has sides of length \\(2a\\).\n\nUse Pythagoras\' theorem to:\n(a) Show that the perpendicular height \\(h\\) of the triangle is \\(a\\sqrt{3}\\).\n(b) Prove that the exact area of the triangle is \\(\\sqrt{3}a^2\\).',
+    maxMarks: 4,
+    calculatorAllowed: false,
+    difficulty: 'grade_7',
+    tags: ['Pythagoras', 'Proof', 'Equilateral Triangle', 'Surds'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'GCSE Grade 7 & UKMT Stretch • Exact Geometric Proof',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Drop a vertical line from the top vertex down to the midpoint of the base. This splits the base \\(2a\\) into \\(a\\) and \\(a\\).',
+      'In the right-angled half triangle, the hypotenuse is \\(2a\\), one leg is \\(a\\), and the other leg is \\(h\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'The altitude splits the equilateral triangle into two congruent right-angled triangles with base \\(a\\) and hypotenuse \\(2a\\):',
+          math: 'a^2 + h^2 = (2a)^2 = 4a^2',
+          markTag: 'M1'
+        },
+        {
+          description: 'Subtract \\(a^2\\) to isolate \\(h^2\\):',
+          math: 'h^2 = 4a^2 - a^2 = 3a^2 \\implies h = \\sqrt{3a^2} = a\\sqrt{3}',
+          markTag: 'A1 (Part a)'
+        },
+        {
+          description: 'Calculate area using \\(\\frac{1}{2} \\times \\text{base} \\times \\text{height}\\):',
+          math: '\\text{Area} = \\frac{1}{2} \\times (2a) \\times (a\\sqrt{3}) = a \\times a\\sqrt{3} = \\sqrt{3}a^2',
+          markTag: 'A1 (Part b)'
+        }
+      ],
+      finalAnswer: 'h = a\\sqrt{3}, \\quad \\text{Area} = \\sqrt{3}a^2',
+      examinerTips: 'Be careful squaring \\(2a\\): \\((2a)^2 = 4a^2\\), not \\(2a^2\\). This exact derivation also explains why \\(\\sin 60^\\circ = \\frac{\\sqrt{3}}{2}\\) and \\(\\cos 60^\\circ = \\frac{1}{2}\\)!'
+    },
+    digitalAnswer: {
+      expected: ['\\sqrt{3}a^2', 'sqrt(3)a^2', 'a^2\\sqrt{3}', 'sqrt3 a^2'],
+      type: 'algebra'
+    }
+  },
+  {
+    id: 'q_geo_pythagoras_04',
+    topicId: 'geo_pythagoras',
+    strandId: 'geometry',
+    title: 'UKMT Lateral: Shortest Crawling Distance on a Cuboid',
+    prompt: 'A solid rectangular box has dimensions \\(6\\text{ cm} \\times 8\\text{ cm} \\times 10\\text{ cm}\\).\nA spider starts at one corner \\(A\\) on the base and wants to crawl along the exterior faces of the box to the opposite corner \\(B\\) at the top.\n\nFind the shortest possible distance the spider can travel.\nGive your answer in the form \\(k\\sqrt{m}\\) in simplified surd form.',
+    maxMarks: 4,
+    calculatorAllowed: false,
+    difficulty: 'ukmt_junior',
+    tags: ['UKMT', 'Lateral Thinking', '3D Nets', 'Pythagoras', 'Surds'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'ukmt',
+      sourceLabel: 'UKMT Junior Mathematical Challenge Lateral Puzzle',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'The spider cannot fly through the interior air of the box; it must walk on the faces.',
+      'Unfold adjacent pairs of faces flat into 2D nets and draw a straight line between \\(A\\) and \\(B\\).',
+      'There are three distinct pairs of faces the spider could cross. Test the distance squared for each!'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Unfold the 3D surface into 2D rectangular nets. The straight line distance in each net is given by \\(\\sqrt{(w_1 + w_2)^2 + h^2}\\):',
+          math: '\\text{Route 1: } (6 + 8) \\text{ by } 10 \\implies 14^2 + 10^2 = 196 + 100 = 296',
+          markTag: 'M1'
+        },
+        {
+          description: 'Calculate Route 2 distance squared:',
+          math: '\\text{Route 2: } (8 + 10) \\text{ by } 6 \\implies 18^2 + 6^2 = 324 + 36 = 360',
+          markTag: 'M1'
+        },
+        {
+          description: 'Calculate Route 3 distance squared:',
+          math: '\\text{Route 3: } (6 + 10) \\text{ by } 8 \\implies 16^2 + 8^2 = 256 + 64 = 320',
+          markTag: 'M1'
+        },
+        {
+          description: 'The shortest route has squared distance \\(296\\). Simplify the surd:',
+          math: 'd = \\sqrt{296} = \\sqrt{4 \\times 74} = 2\\sqrt{74}\\text{ cm} \\approx 17.20\\text{ cm}',
+          markTag: 'A1'
+        }
+      ],
+      finalAnswer: '2\\sqrt{74}\\text{ cm} \\quad (\\approx 17.2\\text{ cm})',
+      examinerTips: 'Notice that \\(2\\sqrt{74} \\approx 17.20\\text{ cm}\\), whereas the interior 3D space diagonal \\(\\sqrt{6^2+8^2+10^2} = \\sqrt{200} \\approx 14.14\\text{ cm}\\). The spider has to remain on the 2D surface!'
+    },
+    digitalAnswer: {
+      expected: ['2\\sqrt{74}', '2sqrt(74)', '2sqrt74', '17.2', '17.20'],
+      type: 'algebra'
+    }
+  },
+  {
+    id: 'q_geo_pythagoras_05',
+    topicId: 'geo_pythagoras',
+    strandId: 'geometry',
+    title: 'Coordinate Geometry: Perpendicular Gradient & Pythagoras',
+    prompt: 'The coordinates of three points are \\(A(-2, 1)\\), \\(B(4, 9)\\), and \\(C(10, k)\\).\nGiven that triangle \\(ABC\\) has a right angle at \\(B\\) (so \\(\\angle ABC = 90^\\circ\\)):\n\n(a) Show that \\(k = 4.5\\).\n(b) Find the exact length of the hypotenuse \\(AC\\).',
+    maxMarks: 5,
+    calculatorAllowed: false,
+    difficulty: 'grade_8_9',
+    tags: ['Coordinate Geometry', 'Perpendicular Lines', 'Pythagoras', 'Surds'],
+    isMorningQuickEligible: false,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'GCSE Grade 8/9 Stretch • Coordinate Pythagoras & Orthogonality',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'You can use either perpendicular gradients \\(m_1 \\times m_2 = -1\\) or Pythagoras\' theorem \\(AB^2 + BC^2 = AC^2\\).',
+      'Gradient of \\(AB = \\frac{9 - 1}{4 - (-2)} = \\frac{8}{6} = \\frac{4}{3}\\). What must the gradient of \\(BC\\) be?',
+      'For part (b), apply the distance formula between \\(A(-2, 1)\\) and \\(C(10, 4.5)\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Calculate gradient of line segment \\(AB\\):',
+          math: 'm_{AB} = \\frac{9 - 1}{4 - (-2)} = \\frac{8}{6} = \\frac{4}{3}',
+          markTag: 'M1'
+        },
+        {
+          description: 'Perpendicular lines satisfy \\(m_{AB} \\times m_{BC} = -1\\), so \\(m_{BC} = -\\frac{3}{4}\\):',
+          math: '\\frac{k - 9}{10 - 4} = -\\frac{3}{4} \\implies \\frac{k - 9}{6} = -\\frac{3}{4}',
+          markTag: 'M1'
+        },
+        {
+          description: 'Solve for \\(k\\):',
+          math: 'k - 9 = 6 \\times \\left(-\\frac{3}{4}\\right) = -4.5 \\implies k = 9 - 4.5 = 4.5',
+          markTag: 'A1 (Part a)'
+        },
+        {
+          description: 'Calculate the length of \\(AB\\) and \\(BC\\):',
+          math: 'AB = \\sqrt{6^2 + 8^2} = 10, \\quad BC = \\sqrt{6^2 + (-4.5)^2} = \\sqrt{36 + 20.25} = \\sqrt{56.25} = 7.5',
+          markTag: 'M1'
+        },
+        {
+          description: 'Use Pythagoras \\(AC = \\sqrt{AB^2 + BC^2}\\) (or distance formula):',
+          math: 'AC = \\sqrt{10^2 + 7.5^2} = \\sqrt{100 + 56.25} = \\sqrt{156.25} = 12.5 \\text{ (or } \\frac{25}{2}\\text{)}',
+          markTag: 'A1 (Part b)'
+        }
+      ],
+      finalAnswer: 'k = 4.5 \\; (\\text{or } \\frac{9}{2}), \\quad AC = 12.5 \\; (\\text{or } \\frac{25}{2})',
+      examinerTips: 'Both Pythagoras \\(AB^2 + BC^2 = AC^2\\) and perpendicular gradients \\(m_1 m_2 = -1\\) give the identical result. Notice the Pythagorean triple ratio: \\(10 : 7.5 : 12.5\\) is a \\(3 : 4 : 5\\) scaled by \\(2.5\\)!'
+    },
+    digitalAnswer: {
+      expected: ['12.5', '25/2', 'k=4.5, AC=12.5', '12 1/2'],
+      type: 'number'
+    }
+  },
+  {
     id: 'q_geo_circle_01',
     topicId: 'geo_circle_theorems',
     strandId: 'geometry',

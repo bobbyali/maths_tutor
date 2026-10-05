@@ -9,12 +9,14 @@ interface SetConfiguratorProps {
   student: StudentProfile;
   initialTopicId?: string;
   onGenerate: (options: SetGenerationOptions) => void;
+  onOpenRequestModal?: () => void;
 }
 
 export const SetConfigurator: React.FC<SetConfiguratorProps> = ({
   student,
   initialTopicId,
-  onGenerate
+  onGenerate,
+  onOpenRequestModal
 }) => {
   const [mode, setMode] = useState<SetGenerationOptions['mode']>(initialTopicId ? 'topic' : 'topic');
   const [selectedTopicId, setSelectedTopicId] = useState<string>(initialTopicId || TOPICS[0].id);
@@ -76,6 +78,17 @@ export const SetConfigurator: React.FC<SetConfiguratorProps> = ({
             </p>
           </div>
         </div>
+
+        {onOpenRequestModal && (
+          <button
+            type="button"
+            onClick={onOpenRequestModal}
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs sm:text-sm font-bold transition-all border border-indigo-200/80 shadow-xs active:scale-95"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+            <span>Request Custom Questions</span>
+          </button>
+        )}
       </div>
 
       <form onSubmit={handleGenerate} className="space-y-6">

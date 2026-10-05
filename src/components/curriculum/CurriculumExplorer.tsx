@@ -18,11 +18,13 @@ import {
 interface CurriculumExplorerProps {
   student: StudentProfile;
   onPracticeTopic: (topicId: string) => void;
+  onRequestCustomTopic?: (topicId: string) => void;
 }
 
 export const CurriculumExplorer: React.FC<CurriculumExplorerProps> = ({
   student,
-  onPracticeTopic
+  onPracticeTopic,
+  onRequestCustomTopic
 }) => {
   const [selectedStrand, setSelectedStrand] = useState<StrandId | 'all'>('all');
   const [difficultyFilter, setDifficultyFilter] = useState<DifficultyLevel | 'all'>('all');
@@ -148,13 +150,25 @@ export const CurriculumExplorer: React.FC<CurriculumExplorerProps> = ({
                   Target: {topic.targetGrades.map(g => g.replace('_', ' ')).join(', ')}
                 </span>
 
-                <button
-                  onClick={() => onPracticeTopic(topic.id)}
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 bg-brand-50 hover:bg-brand-100 text-brand-700 rounded-xl text-xs font-bold border border-brand-200 transition-colors"
-                >
-                  <Play className="w-3.5 h-3.5 fill-brand-600" />
-                  Practice Topic
-                </button>
+                <div className="flex items-center gap-1.5">
+                  {onRequestCustomTopic && (
+                    <button
+                      onClick={() => onRequestCustomTopic(topic.id)}
+                      title={`Request custom stretch questions for ${topic.title}`}
+                      className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-colors border border-transparent hover:border-indigo-200"
+                    >
+                      <Sparkles className="w-4 h-4 text-amber-500 fill-amber-500" />
+                    </button>
+                  )}
+
+                  <button
+                    onClick={() => onPracticeTopic(topic.id)}
+                    className="flex items-center gap-1.5 px-3.5 py-1.5 bg-brand-50 hover:bg-brand-100 text-brand-700 rounded-xl text-xs font-bold border border-brand-200 transition-colors"
+                  >
+                    <Play className="w-3.5 h-3.5 fill-brand-600" />
+                    Practice Topic
+                  </button>
+                </div>
               </div>
             </div>
           );

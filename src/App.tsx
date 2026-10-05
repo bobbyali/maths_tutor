@@ -16,6 +16,7 @@ import { CurriculumExplorer } from './components/curriculum/CurriculumExplorer';
 import { MasteryMatrix } from './components/progress/MasteryMatrix';
 import { SessionHistory } from './components/progress/SessionHistory';
 import { FocusNextCard } from './components/recommendations/FocusNextCard';
+import { CustomQuestionRequestModal } from './components/custom/CustomQuestionRequestModal';
 import { 
   Zap, 
   FileText, 
@@ -37,6 +38,8 @@ export const App: React.FC = () => {
   const [activeStudentId, setActiveStudentId] = useState<string>('');
   const [activeTab, setActiveTab] = useState<NavTab>(getInitialTab);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
+  const [requestTopicId, setRequestTopicId] = useState<string | undefined>(undefined);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
 
@@ -58,6 +61,11 @@ export const App: React.FC = () => {
   });
   const [isPrintView, setIsPrintView] = useState(false);
   const [isMarkingModalOpen, setIsMarkingModalOpen] = useState(false);
+
+  const handleOpenRequestModal = (topicId?: string) => {
+    setRequestTopicId(topicId);
+    setIsRequestModalOpen(true);
+  };
 
   // Sync activeTab with URL hash
   const changeTab = (tab: NavTab) => {
@@ -179,6 +187,7 @@ export const App: React.FC = () => {
         activeStreak={activeStreak}
         onSelectStudent={handleSelectStudent}
         onOpenProfileModal={() => setIsProfileModalOpen(true)}
+        onOpenRequestModal={() => handleOpenRequestModal()}
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
         onDataRefresh={handleDataRefresh}
@@ -203,6 +212,17 @@ export const App: React.FC = () => {
         onAddStudent={handleAddStudent}
         onUpdateStudent={handleUpdateStudent}
         onDeleteStudent={handleDeleteStudent}
+      />
+
+      {/* Custom Question Request & Direct Add Modal */}
+      <CustomQuestionRequestModal
+        isOpen={isRequestModalOpen}
+        onClose={() => setIsRequestModalOpen(false)}
+        students={students}
+        initialTopicId={requestTopicId}
+        onQuestionAdded={() => {
+          handleDataRefresh();
+        }}
       />
 
       {/* Main Content Area */}
@@ -355,6 +375,7 @@ export const App: React.FC = () => {
                   student={activeStudent}
                   initialTopicId={currentTopicId}
                   onGenerate={handleGenerateProblemSet}
+                  onOpenRequestModal={() => handleOpenRequestModal(currentTopicId)}
                 />
 
                 {/* Generated Problem Set Display */}
@@ -440,6 +461,7 @@ export const App: React.FC = () => {
           <CurriculumExplorer
             student={activeStudent}
             onPracticeTopic={handlePracticeTopicFromCurriculum}
+            onRequestCustomTopic={(topicId) => handleOpenRequestModal(topicId)}
           />
         )}
 

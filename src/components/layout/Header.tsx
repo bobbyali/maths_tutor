@@ -19,6 +19,7 @@ interface HeaderProps {
   activeStreak: MorningStreak;
   onSelectStudent: (id: string) => void;
   onOpenProfileModal: () => void;
+  onOpenRequestModal: () => void;
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (open: boolean) => void;
   onDataRefresh: () => void;
@@ -30,6 +31,7 @@ export const Header: React.FC<HeaderProps> = ({
   activeStreak,
   onSelectStudent,
   onOpenProfileModal,
+  onOpenRequestModal,
   isMobileMenuOpen,
   setIsMobileMenuOpen,
   onDataRefresh
@@ -102,6 +104,17 @@ export const Header: React.FC<HeaderProps> = ({
               <Flame className="w-4 h-4 text-amber-500 fill-amber-500 animate-pulse" />
               <span>{activeStreak.currentStreak} <span className="hidden sm:inline font-normal text-amber-700">day streak</span></span>
             </div>
+
+            {/* Request / Add Custom Questions Button */}
+            <button
+              onClick={onOpenRequestModal}
+              title="Request custom stretch questions from AI tutor or add to bank"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200/80 text-xs sm:text-sm font-bold shadow-xs transition-all active:scale-95"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+              <span className="hidden sm:inline">Request Questions</span>
+              <span className="sm:hidden">+ Request</span>
+            </button>
 
             {/* Student Switcher Dropdown */}
             <div className="relative flex items-center">
