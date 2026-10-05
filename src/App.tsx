@@ -168,6 +168,22 @@ export const App: React.FC = () => {
     });
   };
 
+  const handleRecommendSimilar = (question: Question) => {
+    const similar = GeneratorService.getSimilarQuestions(question, 3);
+    // Create a targeted set starting with the favored question followed by similar ones
+    const newSet = [question, ...similar];
+    setProblemSet(newSet);
+    setCurrentTopicId(question.topicId);
+    changeTab('practice');
+
+    setTimeout(() => {
+      const el = document.getElementById('problem-set-container');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
   if (!activeStudent) {
     return <div className="p-12 text-center text-slate-500">Loading student profiles...</div>;
   }
@@ -352,6 +368,7 @@ export const App: React.FC = () => {
             onNavigateToTopic={(topicId) => {
               handlePracticeTopicFromCurriculum(topicId);
             }}
+            onRecommendSimilar={handleRecommendSimilar}
           />
         )}
 
@@ -419,6 +436,7 @@ export const App: React.FC = () => {
                           question={q}
                           index={idx}
                           total={problemSet.length}
+                          onRecommendSimilar={handleRecommendSimilar}
                         />
                       ))}
                     </div>

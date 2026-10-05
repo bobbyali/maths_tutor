@@ -22,12 +22,14 @@ interface MorningChallengeProps {
   student: StudentProfile;
   onDataRefresh: () => void;
   onNavigateToTopic?: (topicId: string) => void;
+  onRecommendSimilar?: (question: Question) => void;
 }
 
 export const MorningChallenge: React.FC<MorningChallengeProps> = ({
   student,
   onDataRefresh,
-  onNavigateToTopic
+  onNavigateToTopic,
+  onRecommendSimilar
 }) => {
   const [question, setQuestion] = useState<Question | null>(null);
   const [hintLevel, setHintLevel] = useState(0);
@@ -199,12 +201,25 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
             <MathText content={question.prompt} />
           </div>
 
-          {/* Past Paper Citation Link */}
+          {/* Past Paper Citation Link & Recommendations */}
           <div className="pt-1 flex items-center justify-between flex-wrap gap-2">
             <CitationLink citation={question.citation} />
-            <span className="text-xs font-semibold text-slate-400">
-              Max Marks: {question.maxMarks}
-            </span>
+            <div className="flex items-center gap-3">
+              {onRecommendSimilar && (
+                <button
+                  type="button"
+                  onClick={() => onRecommendSimilar(question)}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 hover:text-violet-800 text-xs font-bold transition-all border border-violet-200/80 shadow-xs active:scale-95 cursor-pointer"
+                  title="Practice more questions like this in a full set"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+                  <span>More Like This</span>
+                </button>
+              )}
+              <span className="text-xs font-semibold text-slate-400">
+                Max Marks: {question.maxMarks}
+              </span>
+            </div>
           </div>
         </div>
 

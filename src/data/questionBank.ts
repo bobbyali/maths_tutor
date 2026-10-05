@@ -1539,5 +1539,847 @@ export const QUESTION_BANK: Question[] = [
       expected: ['4', '4 pairs, a=7', '(7, 42)'],
       type: 'text'
     }
+  },
+
+  // ==========================================
+  // CONVENTIONAL & FOUNDATIONAL GCSE QUESTIONS
+  // ==========================================
+  {
+    id: 'q_geo_pythagoras_conv_01',
+    topicId: 'geo_pythagoras',
+    strandId: 'geometry',
+    title: 'Pythagoras: Finding the Hypotenuse',
+    prompt: 'A right-angled triangle has perpendicular sides of length \\(6\\text{ cm}\\) and \\(8\\text{ cm}\\).\n\nCalculate the length of the hypotenuse \\(c\\).',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Pythagoras', 'Hypotenuse', 'Standard GCSE', 'Right-Angled Triangles'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'State Pythagoras\' Theorem: \\(a^2 + b^2 = c^2\\), where \\(c\\) is the hypotenuse.',
+      'Substitute \\(6\\) and \\(8\\): \\(6^2 + 8^2 = c^2\\), then find the square root.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Apply Pythagoras\' theorem \\(a^2 + b^2 = c^2\\):',
+          math: 'c^2 = 6^2 + 8^2 = 36 + 64 = 100',
+          markTag: 'M1 (Method - squaring and adding)'
+        },
+        {
+          description: 'Take the positive square root to find \\(c\\):',
+          math: 'c = \\sqrt{100} = 10\\text{ cm}',
+          markTag: 'A1 (Accuracy)'
+        }
+      ],
+      finalAnswer: '10\\text{ cm}',
+      examinerTips: 'This is a standard 3-4-5 Pythagorean triple scaled by 2 (6-8-10). Remember that the hypotenuse is always opposite the right angle.'
+    },
+    digitalAnswer: {
+      expected: ['10', '10 cm', '10cm'],
+      type: 'number'
+    }
+  },
+  {
+    id: 'q_geo_pythagoras_conv_02',
+    topicId: 'geo_pythagoras',
+    strandId: 'geometry',
+    title: 'Pythagoras: Calculating a Shorter Side',
+    prompt: 'In a right-angled triangle, the hypotenuse is \\(13\\text{ cm}\\) and one of the shorter sides is \\(5\\text{ cm}\\).\n\nFind the length of the other side \\(a\\).',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Pythagoras', 'Shorter Leg', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'To find a shorter side, rearrange the formula: \\(a^2 = c^2 - b^2\\).',
+      'Subtract the square of 5 from the square of 13, then square root.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Rearrange Pythagoras\' theorem to subtract squares:',
+          math: 'a^2 = 13^2 - 5^2 = 169 - 25 = 144',
+          markTag: 'M1 (Method - subtracting squares)'
+        },
+        {
+          description: 'Take the square root of 144:',
+          math: 'a = \\sqrt{144} = 12\\text{ cm}',
+          markTag: 'A1 (Accuracy)'
+        }
+      ],
+      finalAnswer: '12\\text{ cm}',
+      examinerTips: 'Common error: students often accidentally add instead of subtract when finding a shorter side! Always check that your answer is shorter than the hypotenuse.'
+    },
+    digitalAnswer: {
+      expected: ['12', '12 cm', '12cm'],
+      type: 'number'
+    }
+  },
+  {
+    id: 'q_geo_pythagoras_conv_03',
+    topicId: 'geo_pythagoras',
+    strandId: 'geometry',
+    title: 'Pythagoras: Area of an Isosceles Triangle',
+    prompt: 'An isosceles triangle has two sides of length \\(10\\text{ cm}\\) and a base of length \\(12\\text{ cm}\\).\n\n(a) Show that the perpendicular height \\(h\\) is \\(8\\text{ cm}\\).\n(b) Hence, calculate the area of the triangle.',
+    maxMarks: 3,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Pythagoras', 'Isosceles Triangle', 'Area', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'A perpendicular line from the apex bisects the base into two equal lengths of \\(6\\text{ cm}\\).',
+      'Use Pythagoras on the right-angled half: \\(h^2 + 6^2 = 10^2\\).',
+      'Area of a triangle = \\(\\frac{1}{2} \\times \\text{base} \\times \\text{perpendicular height}\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Bisect the base: \\(\\frac{12}{2} = 6\\text{ cm}\\). Apply Pythagoras to find \\(h\\):',
+          math: 'h^2 = 10^2 - 6^2 = 100 - 36 = 64 \\implies h = \\sqrt{64} = 8\\text{ cm}',
+          markTag: 'M1 A1 (Height proof)'
+        },
+        {
+          description: 'Calculate the total triangle area:',
+          math: '\\text{Area} = \\frac{1}{2} \\times 12 \\times 8 = 48\\text{ cm}^2',
+          markTag: 'B1 (Accuracy mark for area)'
+        }
+      ],
+      finalAnswer: '48\\text{ cm}^2',
+      examinerTips: 'Make sure you use the full base (12 cm) when computing the total area, not just the half base (6 cm).'
+    },
+    digitalAnswer: {
+      expected: ['48', '48 cm^2', '48cm^2', '48 cm2'],
+      type: 'number'
+    }
+  },
+  {
+    id: 'q_geo_pythagoras_conv_04',
+    topicId: 'geo_pythagoras',
+    strandId: 'geometry',
+    title: 'Pythagoras in Context: Ladder on a Vertical Wall',
+    prompt: 'A ladder of length \\(5\\text{ m}\\) leans against a vertical wall.\nThe foot of the ladder is \\(1.4\\text{ m}\\) away from the base of the wall on horizontal ground.\n\nCalculate how high up the wall the ladder reaches.\nGive your answer to 2 decimal places.',
+    maxMarks: 3,
+    calculatorAllowed: true,
+    difficulty: 'grade_5_6',
+    tags: ['Pythagoras', 'Real-world Context', 'Decimals', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'The ladder forms the hypotenuse of a right-angled triangle with the wall and ground.',
+      'Use \\(h^2 = 5^2 - 1.4^2\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Set up the equation for the vertical height \\(h\\):',
+          math: 'h^2 = 5^2 - 1.4^2 = 25 - 1.96 = 23.04',
+          markTag: 'M1 (Method)'
+        },
+        {
+          description: 'Take the square root:',
+          math: 'h = \\sqrt{23.04} = 4.80\\text{ m}',
+          markTag: 'A1 (Accuracy)'
+        }
+      ],
+      finalAnswer: '4.80\\text{ m}',
+      examinerTips: 'Notice that 23.04 has an exact square root of 4.8! Giving 4.8 or 4.80 m gains full marks.'
+    },
+    digitalAnswer: {
+      expected: ['4.8', '4.80', '4.8 m', '4.80 m', '4.80m'],
+      type: 'number'
+    }
+  },
+  {
+    id: 'q_geo_pythagoras_conv_05',
+    topicId: 'geo_pythagoras',
+    strandId: 'geometry',
+    title: 'Coordinate Geometry: Distance Between Two Points',
+    prompt: 'Point \\(A\\) has coordinates \\((2, 3)\\) and Point \\(B\\) has coordinates \\((8, 11)\\).\n\nFind the exact length of the line segment \\(AB\\).',
+    maxMarks: 3,
+    calculatorAllowed: false,
+    difficulty: 'grade_7',
+    tags: ['Coordinate Geometry', 'Distance Formula', 'Pythagoras', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Higher Tier',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Draw or imagine a right-angled triangle where the horizontal change is \\(\\Delta x\\) and the vertical change is \\(\\Delta y\\).',
+      '\\(\\Delta x = 8 - 2 = 6\\), and \\(\\Delta y = 11 - 3 = 8\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Calculate the horizontal and vertical differences:',
+          math: '\\Delta x = 8 - 2 = 6, \\quad \\Delta y = 11 - 3 = 8',
+          markTag: 'M1 (Coordinate differences)'
+        },
+        {
+          description: 'Apply the distance formula \\(d = \\sqrt{(\\Delta x)^2 + (\\Delta y)^2}\\):',
+          math: 'd = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10',
+          markTag: 'M1 A1 (Exact answer)'
+        }
+      ],
+      finalAnswer: '10',
+      examinerTips: 'The distance formula is just Pythagoras in coordinate disguise: \\(d = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\\).'
+    },
+    digitalAnswer: {
+      expected: ['10', '10 units'],
+      type: 'number'
+    }
+  },
+
+  // ------------------------------------------
+  // Algebraic Fractions (Conventional)
+  // ------------------------------------------
+  {
+    id: 'q_alg_frac_conv_01',
+    topicId: 'alg_fractions',
+    strandId: 'algebra',
+    title: 'Algebraic Fractions: Simplifying Monomial Fractions',
+    prompt: 'Simplify fully:\n\\[\\frac{12x^3y}{18xy^4}\\]',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Algebraic Fractions', 'Simplifying', 'Indices', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Simplify the numerical fraction \\(\\frac{12}{18}\\) first by dividing both by 6.',
+      'Use the laws of indices for \\(x\\) and \\(y\\): \\(\\frac{x^a}{x^b} = x^{a-b}\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Cancel common numerical factors (divide 12 and 18 by 6):',
+          math: '\\frac{12}{18} = \\frac{2}{3}',
+          markTag: 'M1'
+        },
+        {
+          description: 'Cancel variable powers: \\(\\frac{x^3}{x} = x^2\\) and \\(\\frac{y}{y^4} = \\frac{1}{y^3}\\):',
+          math: '\\frac{2x^2}{3y^3}',
+          markTag: 'A1'
+        }
+      ],
+      finalAnswer: '\\frac{2x^2}{3y^3}',
+      examinerTips: 'Ensure negative powers are written as positive powers in the denominator where requested in standard form.'
+    },
+    digitalAnswer: {
+      expected: ['2x^2/(3y^3)', '\\frac{2x^2}{3y^3}', '2x^2/3y^3'],
+      type: 'algebra'
+    }
+  },
+  {
+    id: 'q_alg_frac_conv_02',
+    topicId: 'alg_fractions',
+    strandId: 'algebra',
+    title: 'Algebraic Fractions: Simplifying Quadratic Quotients',
+    prompt: 'Simplify fully:\n\\[\\frac{x^2 - 16}{x^2 + 7x + 12}\\]',
+    maxMarks: 3,
+    calculatorAllowed: false,
+    difficulty: 'grade_7',
+    tags: ['Algebraic Fractions', 'Factorising Quadratics', 'Difference of Two Squares', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Higher Tier',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Factorise the numerator using the difference of two squares: \\(x^2 - 16 = (x - 4)(x + 4)\\).',
+      'Factorise the quadratic denominator into two brackets that multiply to 12 and add to 7.',
+      'Cancel the common bracket.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Factorise numerator and denominator:',
+          math: 'x^2 - 16 = (x - 4)(x + 4), \\quad x^2 + 7x + 12 = (x + 3)(x + 4)',
+          markTag: 'M1 M1 (Factorising both expressions)'
+        },
+        {
+          description: 'Cancel the common factor \\((x + 4)\\):',
+          math: '\\frac{(x - 4)(x + 4)}{(x + 3)(x + 4)} = \\frac{x - 4}{x + 3}',
+          markTag: 'A1 (Simplified fraction)'
+        }
+      ],
+      finalAnswer: '\\frac{x - 4}{x + 3}',
+      examinerTips: 'Never attempt to cancel terms before factorising! You can only cancel common multiplicative factors, never individual additive terms.'
+    },
+    digitalAnswer: {
+      expected: ['(x-4)/(x+3)', '\\frac{x-4}{x+3}', '(x - 4)/(x + 3)'],
+      type: 'algebra'
+    }
+  },
+  {
+    id: 'q_alg_frac_conv_03',
+    topicId: 'alg_fractions',
+    strandId: 'algebra',
+    title: 'Algebraic Fractions: Adding with Numerical Denominators',
+    prompt: 'Write as a single fraction in its simplest form:\n\\[\\frac{2x + 1}{3} + \\frac{x - 2}{4}\\]',
+    maxMarks: 3,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Algebraic Fractions', 'Addition', 'Common Denominator', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Find the lowest common denominator of 3 and 4, which is 12.',
+      'Multiply the first numerator by 4 and the second numerator by 3: \\(\\frac{4(2x + 1) + 3(x - 2)}{12}\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Convert both fractions to common denominator 12:',
+          math: '\\frac{4(2x + 1)}{12} + \\frac{3(x - 2)}{12}',
+          markTag: 'M1'
+        },
+        {
+          description: 'Expand brackets and combine numerators over 12:',
+          math: '\\frac{(8x + 4) + (3x - 6)}{12} = \\frac{11x - 2}{12}',
+          markTag: 'M1 A1'
+        }
+      ],
+      finalAnswer: '\\frac{11x - 2}{12}',
+      examinerTips: 'Watch out for bracket distribution: \\(4(2x+1) = 8x + 4\\), not \\(8x + 1\\).'
+    },
+    digitalAnswer: {
+      expected: ['(11x-2)/12', '\\frac{11x-2}{12}', '(11x - 2)/12'],
+      type: 'algebra'
+    }
+  },
+  {
+    id: 'q_alg_frac_conv_04',
+    topicId: 'alg_fractions',
+    strandId: 'algebra',
+    title: 'Linear Equations: Solving Single Fraction Equations',
+    prompt: 'Solve the equation:\n\\[\\frac{4x - 3}{5} = 9\\]',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Linear Equations', 'Fractions', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Multiply both sides by 5 to eliminate the denominator.',
+      'Then add 3 and divide by 4.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Multiply both sides by 5:',
+          math: '4x - 3 = 45',
+          markTag: 'M1'
+        },
+        {
+          description: 'Solve the two-step equation:',
+          math: '4x = 48 \\implies x = 12',
+          markTag: 'A1'
+        }
+      ],
+      finalAnswer: 'x = 12',
+      examinerTips: 'Always substitute your answer back into the original equation to verify: \\((4(12) - 3)/5 = 45/5 = 9\\). It takes 5 seconds and guarantees full marks.'
+    },
+    digitalAnswer: {
+      expected: ['12', 'x = 12', 'x=12'],
+      type: 'number'
+    }
+  },
+
+  // ------------------------------------------
+  // Quadratic Equations (Conventional)
+  // ------------------------------------------
+  {
+    id: 'q_alg_quad_conv_01',
+    topicId: 'alg_quadratics',
+    strandId: 'algebra',
+    title: 'Quadratics: Solving Monic by Factorising',
+    prompt: 'Solve the quadratic equation:\n\\[x^2 - 7x + 12 = 0\\]',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Quadratics', 'Factorising', 'Monic', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Look for two numbers that multiply to \\(+12\\) and add up to \\(-7\\).',
+      'Both numbers must be negative because their product is positive and sum is negative.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Factorise into two linear brackets:',
+          math: '(x - 3)(x - 4) = 0',
+          markTag: 'M1 (Factorising)'
+        },
+        {
+          description: 'Set each factor to zero to find the roots:',
+          math: 'x - 3 = 0 \\implies x = 3, \\quad x - 4 = 0 \\implies x = 4',
+          markTag: 'A1 (Both solutions)'
+        }
+      ],
+      finalAnswer: 'x = 3, \\; x = 4',
+      examinerTips: 'Ensure you state BOTH solutions clearly. Both \\(3\\) and \\(4\\) satisfy the equation.'
+    },
+    digitalAnswer: {
+      expected: ['3, 4', '4, 3', 'x = 3, x = 4', 'x=3, x=4', '3 and 4'],
+      type: 'text'
+    }
+  },
+  {
+    id: 'q_alg_quad_conv_02',
+    topicId: 'alg_quadratics',
+    strandId: 'algebra',
+    title: 'Quadratics: Difference of Two Squares Equation',
+    prompt: 'Solve the equation:\n\\[x^2 - 64 = 0\\]',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Quadratics', 'DOTS', 'Difference of Two Squares', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Recognise that \\(x^2 - 64\\) is the difference of two squares: \\(a^2 - b^2 = (a - b)(a + b)\\).',
+      'Alternatively, rearrange to \\(x^2 = 64\\) and remember the plus/minus sign.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Factorise using the difference of two squares:',
+          math: '(x - 8)(x + 8) = 0',
+          markTag: 'M1'
+        },
+        {
+          description: 'Solve for \\(x\\):',
+          math: 'x = 8 \\quad \\text{or} \\quad x = -8',
+          markTag: 'A1'
+        }
+      ],
+      finalAnswer: 'x = \\pm 8',
+      examinerTips: 'Do not forget the negative solution! Writing only \\(x = 8\\) loses the accuracy mark.'
+    },
+    digitalAnswer: {
+      expected: ['8, -8', '-8, 8', 'x = 8, x = -8', '8 and -8', '+-8', '\\pm 8'],
+      type: 'text'
+    }
+  },
+  {
+    id: 'q_alg_quad_conv_03',
+    topicId: 'alg_quadratics',
+    strandId: 'algebra',
+    title: 'Quadratics: Solving Non-Monic by Factorising',
+    prompt: 'Solve the equation:\n\\[2x^2 + 7x + 3 = 0\\]',
+    maxMarks: 3,
+    calculatorAllowed: false,
+    difficulty: 'grade_7',
+    tags: ['Quadratics', 'Factorising', 'Non-Monic', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Higher Tier',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'The brackets must start with \\((2x \\dots)(x \\dots)\\).',
+      'The end numbers must multiply to 3 (which can only be 1 and 3).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Factorise the quadratic with leading coefficient 2:',
+          math: '(2x + 1)(x + 3) = 0',
+          markTag: 'M2 (Correct factorisation)'
+        },
+        {
+          description: 'Solve each bracket:',
+          math: '2x + 1 = 0 \\implies x = -\\frac{1}{2}, \\quad x + 3 = 0 \\implies x = -3',
+          markTag: 'A1 (Both solutions)'
+        }
+      ],
+      finalAnswer: 'x = -\\frac{1}{2}, \\; x = -3',
+      examinerTips: 'Check the expansion of \\((2x + 1)(x + 3)\\): \\(2x^2 + 6x + x + 3 = 2x^2 + 7x + 3\\).'
+    },
+    digitalAnswer: {
+      expected: ['-0.5, -3', '-3, -0.5', '-1/2, -3', '-3, -1/2', 'x = -1/2, x = -3'],
+      type: 'text'
+    }
+  },
+  {
+    id: 'q_alg_quad_conv_04',
+    topicId: 'alg_quadratics',
+    strandId: 'algebra',
+    title: 'Quadratics: Quadratic Formula to Decimal Places',
+    prompt: 'Solve the equation \\(x^2 + 5x - 7 = 0\\).\nGive your answers correct to 2 decimal places.',
+    maxMarks: 3,
+    calculatorAllowed: true,
+    difficulty: 'grade_7',
+    tags: ['Quadratics', 'Quadratic Formula', 'Calculator', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Higher Tier',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Use the quadratic formula: \\(x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\\).',
+      'Identify: \\(a = 1\\), \\(b = 5\\), \\(c = -7\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Substitute \\(a = 1, b = 5, c = -7\\) into the quadratic formula:',
+          math: 'x = \\frac{-5 \\pm \\sqrt{5^2 - 4(1)(-7)}}{2(1)} = \\frac{-5 \\pm \\sqrt{25 + 28}}{2} = \\frac{-5 \\pm \\sqrt{53}}{2}',
+          markTag: 'M1 M1 (Substitution & discriminant evaluation)'
+        },
+        {
+          description: 'Calculate both decimal values to 2 decimal places:',
+          math: 'x = \\frac{-5 + 7.2801}{2} \\approx 1.14, \\quad x = \\frac{-5 - 7.2801}{2} \\approx -6.14',
+          markTag: 'A1 (Both correct to 2 d.p.)'
+        }
+      ],
+      finalAnswer: 'x = 1.14 \\quad \\text{or} \\quad x = -6.14',
+      examinerTips: 'Be careful with the negative signs: \\(-4(1)(-7) = +28\\), so under the radical you add 28 to 25.'
+    },
+    digitalAnswer: {
+      expected: ['1.14, -6.14', '-6.14, 1.14', '1.14 and -6.14'],
+      type: 'text'
+    }
+  },
+
+  // ------------------------------------------
+  // Indices & Surds (Conventional)
+  // ------------------------------------------
+  {
+    id: 'q_num_indices_conv_01',
+    topicId: 'num_indices',
+    strandId: 'number',
+    title: 'Indices: Negative and Zero Powers',
+    prompt: '(a) Work out the value of \\(5^{-2}\\) as a fraction in simplest form.\n(b) Write down the value of \\(12^0\\).',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Indices', 'Negative Indices', 'Zero Power', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'A negative power indicates a reciprocal: \\(a^{-n} = \\frac{1}{a^n}\\).',
+      'Any non-zero number raised to the power of 0 equals 1.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Apply the reciprocal index law for part (a):',
+          math: '5^{-2} = \\frac{1}{5^2} = \\frac{1}{25}',
+          markTag: 'B1'
+        },
+        {
+          description: 'Apply the zero power rule for part (b):',
+          math: '12^0 = 1',
+          markTag: 'B1'
+        }
+      ],
+      finalAnswer: '(a) \\frac{1}{25}, \\quad (b) 1',
+      examinerTips: 'Do not confuse negative powers with negative numbers! \\(5^{-2}\\) is positive \\(\\frac{1}{25}\\), never \\(-10\\) or \\(-25\\).'
+    },
+    digitalAnswer: {
+      expected: ['1/25, 1', '1/25 and 1', '\\frac{1}{25}, 1'],
+      type: 'text'
+    }
+  },
+  {
+    id: 'q_num_indices_conv_02',
+    topicId: 'num_indices',
+    strandId: 'number',
+    title: 'Indices: Evaluating Fractional Powers',
+    prompt: 'Work out the value of:\n\\[64^{2/3}\\]',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Indices', 'Fractional Indices', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'In a fractional power \\(a^{m/n}\\), the denominator \\(n\\) is the root and the numerator \\(m\\) is the power.',
+      'Find the cube root of 64 first, then square the result.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Take the cube root of 64:',
+          math: '64^{1/3} = \\sqrt[3]{64} = 4',
+          markTag: 'M1 (Taking root)'
+        },
+        {
+          description: 'Square the result:',
+          math: '4^2 = 16',
+          markTag: 'A1 (Accuracy)'
+        }
+      ],
+      finalAnswer: '16',
+      examinerTips: 'It is always much easier to take the root first (reducing 64 to 4) before squaring, rather than squaring 64 to get 4096 and trying to find the cube root of 4096.'
+    },
+    digitalAnswer: {
+      expected: ['16'],
+      type: 'number'
+    }
+  },
+  {
+    id: 'q_num_indices_conv_03',
+    topicId: 'num_indices',
+    strandId: 'number',
+    title: 'Surds: Simplifying to Square Root Form',
+    prompt: 'Write \\(\\sqrt{72}\\) in the form \\(k\\sqrt{2}\\), where \\(k\\) is an integer.',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Surds', 'Simplifying Surds', 'Square Roots', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Find the largest square number factor of 72.',
+      '\\(72 = 36 \\times 2\\). Use \\(\\sqrt{a \\times b} = \\sqrt{a} \\times \\sqrt{b}\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Split 72 into its largest square factor and 2:',
+          math: '\\sqrt{72} = \\sqrt{36 \\times 2}',
+          markTag: 'M1'
+        },
+        {
+          description: 'Evaluate the square root of 36:',
+          math: '\\sqrt{36}\\sqrt{2} = 6\\sqrt{2}',
+          markTag: 'A1'
+        }
+      ],
+      finalAnswer: '6\\sqrt{2}',
+      examinerTips: 'If you factored out 9 first (\\(\\sqrt{9 \\times 8} = 3\\sqrt{8}\\)), remember that 8 still has a square factor of 4: \\(3 \\times 2\\sqrt{2} = 6\\sqrt{2}\\).'
+    },
+    digitalAnswer: {
+      expected: ['6\\sqrt{2}', '6sqrt(2)', '6sqrt2', '6'],
+      type: 'algebra'
+    }
+  },
+  {
+    id: 'q_num_indices_conv_04',
+    topicId: 'num_indices',
+    strandId: 'number',
+    title: 'Surds: Rationalising a Single-Term Denominator',
+    prompt: 'Rationalise the denominator and simplify fully:\n\\[\\frac{15}{\\sqrt{5}}\\]',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_7',
+    tags: ['Surds', 'Rationalising Denominator', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Higher Tier',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Multiply both numerator and denominator by \\(\\sqrt{5}\\).',
+      'Remember that \\(\\sqrt{5} \\times \\sqrt{5} = 5\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Multiply numerator and denominator by \\(\\sqrt{5}\\):',
+          math: '\\frac{15}{\\sqrt{5}} \\times \\frac{\\sqrt{5}}{\\sqrt{5}} = \\frac{15\\sqrt{5}}{5}',
+          markTag: 'M1 (Multiply top and bottom by surd)'
+        },
+        {
+          description: 'Simplify the fraction \\(\\frac{15}{5} = 3\\):',
+          math: '3\\sqrt{5}',
+          markTag: 'A1'
+        }
+      ],
+      finalAnswer: '3\\sqrt{5}',
+      examinerTips: 'Always simplify the integer coefficients at the end: \\(\\frac{15\\sqrt{5}}{5} = 3\\sqrt{5}\\).'
+    },
+    digitalAnswer: {
+      expected: ['3\\sqrt{5}', '3sqrt(5)', '3sqrt5'],
+      type: 'algebra'
+    }
+  },
+
+  // ------------------------------------------
+  // Expanding & Factorising (Conventional)
+  // ------------------------------------------
+  {
+    id: 'q_alg_expand_conv_01',
+    topicId: 'alg_expanding',
+    strandId: 'algebra',
+    title: 'Algebra: Expanding Double Brackets',
+    prompt: 'Expand and simplify:\n\\[(x + 6)(x - 4)\\]',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Expanding Brackets', 'Double Brackets', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Multiply each term in the first bracket by each term in the second (FOIL method).',
+      'Combine the two middle \\(x\\) terms: \\(+6x - 4x\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Expand all four terms:',
+          math: 'x(x) - 4(x) + 6(x) - 6(4) = x^2 - 4x + 6x - 24',
+          markTag: 'M1 (3 or 4 correct terms)'
+        },
+        {
+          description: 'Collect like terms \\(-4x + 6x = +2x\\):',
+          math: 'x^2 + 2x - 24',
+          markTag: 'A1'
+        }
+      ],
+      finalAnswer: 'x^2 + 2x - 24',
+      examinerTips: 'Double check the sign of the constant term: a positive multiplied by a negative gives a negative (\\(+6 \\times -4 = -24\\)).'
+    },
+    digitalAnswer: {
+      expected: ['x^2 + 2x - 24', 'x^2+2x-24'],
+      type: 'algebra'
+    }
+  },
+  {
+    id: 'q_alg_expand_conv_02',
+    topicId: 'alg_expanding',
+    strandId: 'algebra',
+    title: 'Algebra: Expanding with Leading Coefficient',
+    prompt: 'Expand and simplify:\n\\[(2x + 3)(3x - 2)\\]',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Expanding Brackets', 'Coefficients', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'First terms: \\(2x \\times 3x = 6x^2\\).',
+      'Outside and Inside terms: \\(2x \\times (-2) = -4x\\) and \\(3 \\times 3x = +9x\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Expand all products:',
+          math: '6x^2 - 4x + 9x - 6',
+          markTag: 'M1'
+        },
+        {
+          description: 'Collect like terms \\(-4x + 9x = +5x\\):',
+          math: '6x^2 + 5x - 6',
+          markTag: 'A1'
+        }
+      ],
+      finalAnswer: '6x^2 + 5x - 6',
+      examinerTips: 'Be careful with \\(2x \\times 3x\\): remember to multiply both the numbers and the variables to get \\(6x^2\\).'
+    },
+    digitalAnswer: {
+      expected: ['6x^2 + 5x - 6', '6x^2+5x-6'],
+      type: 'algebra'
+    }
+  },
+  {
+    id: 'q_alg_expand_conv_03',
+    topicId: 'alg_expanding',
+    strandId: 'algebra',
+    title: 'Algebra: Factoring Common Monomial',
+    prompt: 'Factorise fully:\n\\[8x^2 + 12x\\]',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Factorising', 'Single Bracket', 'Highest Common Factor', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Find the highest common factor of 8 and 12, which is 4.',
+      'Find the highest common variable factor between \\(x^2\\) and \\(x\\), which is \\(x\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Identify the highest common factor \\(4x\\):',
+          math: '\\text{HCF}(8x^2, 12x) = 4x',
+          markTag: 'M1'
+        },
+        {
+          description: 'Factor out \\(4x\\):',
+          math: '4x(2x + 3)',
+          markTag: 'A1'
+        }
+      ],
+      finalAnswer: '4x(2x + 3)',
+      examinerTips: 'The question says factorise "fully". Factoring out only \\(2x(4x + 6)\\) or \\(4(2x^2 + 3x)\\) is only partially factorised and loses a mark.'
+    },
+    digitalAnswer: {
+      expected: ['4x(2x + 3)', '4x(2x+3)'],
+      type: 'algebra'
+    }
   }
 ];

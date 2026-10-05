@@ -10,19 +10,22 @@ import {
   XCircle, 
   Calculator, 
   ChevronDown, 
-  ChevronUp 
+  ChevronUp,
+  Sparkles
 } from 'lucide-react';
 
 interface ProblemCardProps {
   question: Question;
   index: number;
   total: number;
+  onRecommendSimilar?: (question: Question) => void;
 }
 
 export const ProblemCard: React.FC<ProblemCardProps> = ({
   question,
   index,
-  total
+  total,
+  onRecommendSimilar
 }) => {
   const [hintLevel, setHintLevel] = useState(0);
   const [showSolution, setShowSolution] = useState(false);
@@ -79,9 +82,21 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({
           <MathText content={question.prompt} />
         </div>
 
-        {/* Citation Link */}
-        <div className="pt-1 flex items-center justify-between">
+        {/* Citation Link & Targeted Recommendations */}
+        <div className="pt-1 flex items-center justify-between gap-3 flex-wrap">
           <CitationLink citation={question.citation} />
+
+          {onRecommendSimilar && (
+            <button
+              type="button"
+              onClick={() => onRecommendSimilar(question)}
+              className="no-print inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-violet-50 hover:bg-violet-100 text-violet-700 hover:text-violet-800 text-xs font-bold transition-all border border-violet-200/80 shadow-xs active:scale-95 cursor-pointer"
+              title="Generate a custom set of questions similar to this topic and difficulty"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
+              <span>More Like This</span>
+            </button>
+          )}
         </div>
       </div>
 

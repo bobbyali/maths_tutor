@@ -191,6 +191,7 @@ export const SetConfigurator: React.FC<SetConfiguratorProps> = ({
               className="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm font-medium bg-white text-slate-800"
             >
               <option value="all">Any Suitable Tier</option>
+              <option value="grade_5_6">Grade 5-6 Standard (Conventional Foundation/Higher)</option>
               <option value="grade_7">Grade 7 Higher</option>
               <option value="grade_8_9">Grade 8-9 Top Tier</option>
               <option value="ukmt_junior">UKMT Junior (Y7/8 Lateral)</option>
