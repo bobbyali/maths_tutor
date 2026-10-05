@@ -15,12 +15,17 @@ export const MathText: React.FC<MathTextProps> = ({ content, className = '', blo
     const hasDelimiters = /(\$\$|\\\[|\$|\\\()/.test(content);
     const hasLatexCommands = /(\\frac|\\sqrt|\\times|\\pm|\\implies|\\approx|\\neq|\\leq|\\geq|\\in|_|\^)/.test(content);
 
+    const baseOptions = {
+      throwOnError: false,
+      output: 'html' as const, // Only generate HTML spans, prevents MathML duplication
+      minRuleThickness: 0.05,  // Prevents thin lines, fraction bars, and square roots from disappearing
+    };
+
     if (!hasDelimiters && (block || hasLatexCommands)) {
       try {
         return katex.renderToString(content.trim(), {
+          ...baseOptions,
           displayMode: block,
-          throwOnError: false,
-          output: 'html', // Only generate HTML spans, prevents MathML duplication
         });
       } catch (err) {
         // Fallback to text parsing
@@ -33,9 +38,8 @@ export const MathText: React.FC<MathTextProps> = ({ content, className = '', blo
     processed = processed.replace(/\$\$([\s\S]*?)\$\$/g, (_, math) => {
       try {
         return `<div class="katex-block-wrapper my-3 text-center overflow-x-auto">${katex.renderToString(math.trim(), {
+          ...baseOptions,
           displayMode: true,
-          throwOnError: false,
-          output: 'html',
         })}</div>`;
       } catch (err) {
         return `<code>${math}</code>`;
@@ -46,9 +50,8 @@ export const MathText: React.FC<MathTextProps> = ({ content, className = '', blo
     processed = processed.replace(/\\\[([\s\S]*?)\\\]/g, (_, math) => {
       try {
         return `<div class="katex-block-wrapper my-3 text-center overflow-x-auto">${katex.renderToString(math.trim(), {
+          ...baseOptions,
           displayMode: true,
-          throwOnError: false,
-          output: 'html',
         })}</div>`;
       } catch (err) {
         return `<code>${math}</code>`;
@@ -59,9 +62,8 @@ export const MathText: React.FC<MathTextProps> = ({ content, className = '', blo
     processed = processed.replace(/\$([^\$\n]+?)\$/g, (_, math) => {
       try {
         return katex.renderToString(math.trim(), {
+          ...baseOptions,
           displayMode: false,
-          throwOnError: false,
-          output: 'html',
         });
       } catch (err) {
         return `<code>${math}</code>`;
@@ -72,9 +74,8 @@ export const MathText: React.FC<MathTextProps> = ({ content, className = '', blo
     processed = processed.replace(/\\\(([\s\S]*?)\\\)/g, (_, math) => {
       try {
         return katex.renderToString(math.trim(), {
+          ...baseOptions,
           displayMode: false,
-          throwOnError: false,
-          output: 'html',
         });
       } catch (err) {
         return `<code>${math}</code>`;
