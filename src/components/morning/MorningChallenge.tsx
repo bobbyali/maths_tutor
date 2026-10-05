@@ -22,6 +22,7 @@ interface MorningChallengeProps {
   student: StudentProfile;
   onDataRefresh: () => void;
   onNavigateToTopic?: (topicId: string) => void;
+  onNavigateToPractice?: () => void;
   onRecommendSimilar?: (question: Question) => void;
 }
 
@@ -29,25 +30,39 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
   student,
   onDataRefresh,
   onNavigateToTopic,
+  onNavigateToPractice,
   onRecommendSimilar
 }) => {
+  const [morningTier, setMorningTier] = useState<'grade_5_6' | 'grade_7'>('grade_5_6');
   const [question, setQuestion] = useState<Question | null>(null);
   const [hintLevel, setHintLevel] = useState(0);
   const [showSolution, setShowSolution] = useState(false);
   const [loggedStatus, setLoggedStatus] = useState<string | null>(null);
 
-  // Timer state
-  const [seconds, setSeconds] = useState(300); // 5 mins default
+  // Timer state (default 3 mins for morning warm-up)
+  const [timerDuration, setTimerDuration] = useState<180 | 300>(180);
+  const [seconds, setSeconds] = useState(180);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   // Fetch question on student change or load
-  const loadNewQuestion = () => {
-    const q = GeneratorService.getMorningQuickQuestion(student.defaultDifficulty);
+  const loadNewQuestion = (tier: 'grade_5_6' | 'grade_7' = morningTier) => {
+    const q = GeneratorService.getMorningQuickQuestion(tier, question?.id);
     setQuestion(q);
     setHintLevel(0);
     setShowSolution(false);
     setLoggedStatus(null);
-    setSeconds(300);
+    setSeconds(timerDuration);
+    setIsTimerRunning(false);
+  };
+
+  const handleTierChange = (newTier: 'grade_5_6' | 'grade_7') => {
+    setMorningTier(newTier);
+    loadNewQuestion(newTier);
+  };
+
+  const handleTimerDurationChange = (newDuration: 180 | 300) => {
+    setTimerDuration(newDuration);
+    setSeconds(newDuration);
     setIsTimerRunning(false);
   };
 
@@ -142,14 +157,14 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
             <div className="flex items-center gap-2 mb-2">
               <span className="text-2xl">{student.avatarEmoji}</span>
               <span className="text-xs font-bold uppercase tracking-wider bg-white/20 px-3 py-1 rounded-full">
-                5–10 Min Morning Routine
+                ⚡ 2–3 Min Morning Routine
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              {student.name}'s Morning Stretch
+              {student.name}'s Morning Warm-up
             </h1>
             <p className="text-white/90 text-sm mt-1 max-w-lg">
-              One quick high-yield question before school to keep mathematical intuition and lateral thinking razor-sharp.
+              One quick, bite-sized warm-up before school to build speed, accuracy, and confidence. Challenge puzzles are saved for Practice Sets!
             </p>
           </div>
 
@@ -163,32 +178,94 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
         </div>
       </div>
 
+      {/* Info banner: Math challenge questions reminder */}
+      <div className="bg-amber-50/90 border border-amber-200 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-900 shadow-xs">
+        <div className="flex items-center gap-2.5">
+          <span className="text-xl">💡</span>
+          <div>
+            <p className="font-bold text-amber-950">Morning flash cards are kept quick & confidence-boosting!</p>
+            <p className="text-amber-800 mt-0.5">Looking for lateral Olympiad puzzles or 5-mark proofs? Head over to <strong>Practice Sets</strong> for weekend study.</p>
+          </div>
+        </div>
+        {onNavigateToPractice && (
+          <button
+            onClick={onNavigateToPractice}
+            className="shrink-0 inline-flex items-center gap-1 text-xs font-bold text-amber-900 bg-white hover:bg-amber-100 border border-amber-200 px-3 py-1.5 rounded-xl transition-all cursor-pointer shadow-2xs self-start sm:self-auto"
+          >
+            <span>Practice Sets</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </button>
+        )}
+      </div>
+
       {/* Main Flashcard Card */}
       <div className="bg-white rounded-3xl border border-slate-200 shadow-md p-6 sm:p-8 space-y-6 transition-all">
-        {/* Card Meta Bar */}
+        {/* Tier Selector & Timer Controls */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+          {/* Difficulty Tier Tabs */}
+          <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-2xl">
+            <button
+              type="button"
+              onClick={() => handleTierChange('grade_5_6')}
+              className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer ${
+                morningTier === 'grade_5_6'
+                  ? 'bg-white text-amber-700 shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              ⚡ Quick Warm-up (Grades 5–6)
+            </button>
+            <button
+              type="button"
+              onClick={() => handleTierChange('grade_7')}
+              className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer ${
+                morningTier === 'grade_7'
+                  ? 'bg-white text-amber-700 shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              🎯 Grade 7 Fluency
+            </button>
+          </div>
+
+          {/* Timer Controls */}
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold uppercase px-3 py-1 rounded-full bg-slate-100 text-slate-700">
+            <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl">
+              <Clock className="w-4 h-4 text-slate-500" />
+              <span className={`font-mono text-sm font-bold ${seconds < 45 ? 'text-rose-600' : 'text-slate-700'}`}>
+                {formatTimer(seconds)}
+              </span>
+              <button
+                onClick={toggleTimer}
+                className="text-xs font-semibold text-brand-600 hover:text-brand-800 ml-1 px-1.5 py-0.5 rounded hover:bg-slate-200 transition-colors cursor-pointer"
+              >
+                {isTimerRunning ? 'Pause' : seconds === timerDuration ? 'Start' : 'Resume'}
+              </button>
+            </div>
+            {/* Quick 3m / 5m switcher */}
+            <button
+              onClick={() => handleTimerDurationChange(timerDuration === 180 ? 300 : 180)}
+              className="text-[11px] font-semibold text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 px-2 py-1 rounded-lg border border-slate-200 cursor-pointer"
+              title="Toggle timer duration between 3 and 5 minutes"
+            >
+              {timerDuration === 180 ? '3m' : '5m'}
+            </button>
+          </div>
+        </div>
+
+        {/* Question Topic & Meta */}
+        <div className="flex items-center justify-between flex-wrap gap-2 text-xs">
+          <div className="flex items-center gap-2">
+            <span className="font-bold uppercase px-3 py-1 rounded-full bg-slate-100 text-slate-700">
               {GeneratorService.getTopicTitle(question.topicId)}
             </span>
-            <span className="text-xs font-semibold text-slate-400">
+            <span className="font-semibold text-slate-400">
               {question.calculatorAllowed ? 'Calculator Allowed' : 'Non-Calculator'}
             </span>
           </div>
-
-          {/* 5-Min Timer */}
-          <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl">
-            <Clock className="w-4 h-4 text-slate-500" />
-            <span className={`font-mono text-sm font-bold ${seconds < 60 ? 'text-rose-600' : 'text-slate-700'}`}>
-              {formatTimer(seconds)}
-            </span>
-            <button
-              onClick={toggleTimer}
-              className="text-xs font-semibold text-brand-600 hover:text-brand-800 ml-1 px-1.5 py-0.5 rounded hover:bg-slate-200 transition-colors"
-            >
-              {isTimerRunning ? 'Pause' : seconds === 300 ? 'Start' : 'Resume'}
-            </button>
-          </div>
+          <span className="font-bold text-amber-700 bg-amber-50 border border-amber-200/80 px-2.5 py-0.5 rounded-full">
+            {question.difficulty === 'grade_5_6' ? 'Grade 5–6 Warm-up' : 'Grade 7 Fluency'} • {question.maxMarks} {question.maxMarks === 1 ? 'Mark' : 'Marks'}
+          </span>
         </div>
 
         {/* Question Title & Prompt */}
@@ -353,7 +430,7 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
                 <span>Logged to {student.name}'s history & streak! 🔥</span>
               </div>
               <button
-                onClick={loadNewQuestion}
+                onClick={() => loadNewQuestion()}
                 className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition-all shadow-xs"
               >
                 <RefreshCw className="w-3.5 h-3.5" /> Next Question
@@ -391,7 +468,7 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
       {/* Footer controls: Refresh or Jump to topic */}
       <div className="flex items-center justify-between text-xs text-slate-500 px-2">
         <button
-          onClick={loadNewQuestion}
+          onClick={() => loadNewQuestion()}
           className="flex items-center gap-1.5 text-slate-600 hover:text-slate-900 font-semibold"
         >
           <RefreshCw className="w-4 h-4" /> Try a different morning question

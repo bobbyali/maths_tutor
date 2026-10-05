@@ -368,6 +368,7 @@ export const App: React.FC = () => {
             onNavigateToTopic={(topicId) => {
               handlePracticeTopicFromCurriculum(topicId);
             }}
+            onNavigateToPractice={() => setActiveTab('practice')}
             onRecommendSimilar={handleRecommendSimilar}
           />
         )}

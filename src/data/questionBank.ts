@@ -14,7 +14,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'grade_7',
     tags: ['Primes', 'HCF', 'LCM', 'Cube Constraints'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Prime Factors & Cube Constraints",
@@ -67,7 +67,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'ukmt_junior',
     tags: ['UKMT', 'JMC', 'Primes', 'Number Theory', 'Lateral'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'ukmt',
       examBoard: 'UKMT',
@@ -187,7 +187,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'grade_8_9',
     tags: ['Surds', 'Rationalising', 'Grade 9'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Binomial Surd Conjugates",
@@ -239,7 +239,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'grade_7',
     tags: ['Indices', 'Negative Powers', 'Fractional Powers'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Non-linear Index Equations",
@@ -286,7 +286,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: true,
     difficulty: 'grade_7',
     tags: ['Bounds', 'Error Intervals', 'Calculator'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Upper & Lower Bounds of Quotients",
@@ -336,7 +336,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'grade_7',
     tags: ['Quadratics', 'Completing the Square', 'Turning Point'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Completing the Square & Turning Points",
@@ -503,7 +503,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'grade_7',
     tags: ['Proof', 'Consecutive Integers', 'Multiple of 8'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Algebraic Number Proof",
@@ -610,7 +610,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'grade_7',
     tags: ['Sequences', 'Quadratic Sequence', 'Nth Term'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Quadratic Sequences (Second Differences)",
@@ -665,7 +665,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'grade_7',
     tags: ['Proportion', 'Inverse Square Law', 'Formulas'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Non-Linear Proportionality",
@@ -712,7 +712,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: true,
     difficulty: 'grade_7',
     tags: ['Percentages', 'Compound Growth', 'Multipliers'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Compound Growth & Reverse Percentages",
@@ -871,7 +871,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'grade_7',
     tags: ['Pythagoras', 'Proof', 'Equilateral Triangle', 'Surds'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: 'GCSE Grade 7 & UKMT Stretch • Exact Geometric Proof',
@@ -917,7 +917,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'ukmt_junior',
     tags: ['UKMT', 'Lateral Thinking', '3D Nets', 'Pythagoras', 'Surds'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'ukmt',
       sourceLabel: 'UKMT Junior Mathematical Challenge Lateral Puzzle',
@@ -1026,7 +1026,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'grade_7',
     tags: ['Circle Theorems', 'Alternate Segment', 'Angle Reasons'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Multi-Step Circle Theorems",
@@ -1073,7 +1073,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: true,
     difficulty: 'grade_7',
     tags: ['Trigonometry', 'Cosine Rule', 'Area Formula'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Sine & Cosine Rule in Non-Right Triangles",
@@ -1125,7 +1125,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: true,
     difficulty: 'grade_8_9',
     tags: ['3D Geometry', 'Space Diagonal', 'Trigonometry', 'Grade 9'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • 3D Pythagoras & Trigonometry",
@@ -1172,7 +1172,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'grade_8_9',
     tags: ['Vectors', 'Parallelogram', 'Ratios', 'Grade 9'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Geometric Vector Proof (Collinearity)",
@@ -1279,7 +1279,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'grade_7',
     tags: ['Venn Diagrams', 'Set Notation', 'Conditional Probability'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Conditional Probability & Sets",
@@ -1334,7 +1334,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: true,
     difficulty: 'grade_7',
     tags: ['Histograms', 'Frequency Density', 'Statistics'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "GCSE Grade 8/9 Stretch • Histograms & Frequency Density",
@@ -1384,7 +1384,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'ukmt_junior',
     tags: ['UKMT', 'JMC', 'Lateral', 'Primes', 'Parity'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'ukmt',
       examBoard: 'UKMT',
@@ -1441,7 +1441,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'ukmt_intermediate',
     tags: ['UKMT', 'IMC', 'Lateral', 'Factorisation', 'Number Theory'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'ukmt',
       examBoard: 'UKMT',
@@ -1498,7 +1498,7 @@ export const QUESTION_BANK: Question[] = [
     calculatorAllowed: false,
     difficulty: 'ukmt_junior',
     tags: ['Custom Stretch', 'Fractions', 'Simon\'s Favorite Factoring Trick'],
-    isMorningQuickEligible: true,
+    isMorningQuickEligible: false,
     citation: {
       sourceType: 'custom_stretch',
       sourceLabel: "Olympiad Stretch • Simon's Favorite Factoring Trick",
@@ -2381,5 +2381,369 @@ export const QUESTION_BANK: Question[] = [
       expected: ['4x(2x + 3)', '4x(2x+3)'],
       type: 'algebra'
     }
+  },
+
+  // ------------------------------------------
+  // BITE-SIZED MORNING FLASH CARD DRILLS
+  // ------------------------------------------
+  {
+    id: 'q_num_percentages_conv_01',
+    topicId: 'rat_growth',
+    strandId: 'ratio',
+    title: 'Percentage Increase: Quick Mental Calculation',
+    prompt: 'Increase \\(£140\\) by \\(15\\%\\).',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Percentages', 'Mental Maths', 'Morning Flash Card', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Find 10% of £140 by dividing by 10 (£14).',
+      'Find 5% by halving 10% (£7), then add 10% + 5% (£21) to the original amount.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Calculate 10% and 5%:',
+          math: '10\\% = £14, \\quad 5\\% = £7 \\implies 15\\% = £21',
+          markTag: 'M1 (Method - finding 15%)'
+        },
+        {
+          description: 'Add to the original amount:',
+          math: '£140 + £21 = £161',
+          markTag: 'A1 (Accuracy)'
+        }
+      ],
+      finalAnswer: '£161',
+      examinerTips: 'Multiplying by decimal multiplier \\(140 \\times 1.15 = 161\\) is also an excellent method for calculator papers.'
+    },
+    digitalAnswer: {
+      expected: ['161', '£161', '161.00'],
+      type: 'number'
+    }
+  },
+  {
+    id: 'q_rat_ratio_conv_01',
+    topicId: 'rat_proportion',
+    strandId: 'ratio',
+    title: 'Ratio: Sharing an Amount into Three Parts',
+    prompt: 'Share \\(£72\\) in the ratio \\(2 : 3 : 4\\).\n\nFind the value of the largest share.',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Ratio', 'Sharing', 'Morning Flash Card', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Find the total number of parts by adding the ratio terms: \\(2 + 3 + 4 = 9\\).',
+      'Divide £72 by 9 to find 1 part, then multiply by 4.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Find the total parts and the value of 1 part:',
+          math: '2 + 3 + 4 = 9 \\text{ parts}. \\quad \\frac{£72}{9} = £8 \\text{ per part}',
+          markTag: 'M1'
+        },
+        {
+          description: 'Multiply by the largest ratio part (4):',
+          math: '4 \\times £8 = £32',
+          markTag: 'A1'
+        }
+      ],
+      finalAnswer: '£32',
+      examinerTips: 'Always double-check your total: \\(2(8) + 3(8) + 4(8) = 16 + 24 + 32 = 72\\).'
+    },
+    digitalAnswer: {
+      expected: ['32', '£32', '32.00'],
+      type: 'number'
+    }
+  },
+  {
+    id: 'q_prob_basic_conv_01',
+    topicId: 'prob_venn',
+    strandId: 'probability',
+    title: 'Probability: Mutually Exclusive Outcomes',
+    prompt: 'The probability that a biased coin lands on Heads is \\(0.68\\).\n\nFind the probability that the coin lands on Tails.',
+    maxMarks: 1,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Probability', 'Mutually Exclusive', 'Morning Flash Card', 'Standard GCSE'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'The sum of probabilities for all mutually exclusive exhaustive outcomes is always 1.',
+      'Calculate \\(1 - 0.68\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Subtract from 1:',
+          math: 'P(\\text{Tails}) = 1 - 0.68 = 0.32',
+          markTag: 'B1 (Independent mark)'
+        }
+      ],
+      finalAnswer: '0.32',
+      examinerTips: 'A classic 1-mark foundation-to-higher question. Make sure your decimal subtraction is accurate: \\(1.00 - 0.68 = 0.32\\).'
+    },
+    digitalAnswer: {
+      expected: ['0.32', '32%', '8/25'],
+      type: 'number'
+    }
+  },
+  {
+    id: 'q_geo_angles_conv_01',
+    topicId: 'geo_circle',
+    strandId: 'geometry',
+    title: 'Geometry: Co-interior Angles in Parallel Lines',
+    prompt: 'Two parallel lines are crossed by a transversal line.\nOne interior angle is \\(65^\\circ\\).\n\nFind the size of the co-interior (allied) angle.',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Geometry', 'Parallel Lines', 'Co-interior Angles', 'Morning Flash Card'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Co-interior (allied, C-shaped) angles between parallel lines add up to \\(180^\\circ\\).',
+      'Subtract \\(65^\\circ\\) from \\(180^\\circ\\).'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Use the rule that co-interior angles sum to \\(180^\\circ\\):',
+          math: '180^\\circ - 65^\\circ = 115^\\circ',
+          markTag: 'M1 A1'
+        }
+      ],
+      finalAnswer: '115^\\circ',
+      examinerTips: 'Do not confuse co-interior angles (which sum to 180°) with alternate (Z) or corresponding (F) angles (which are equal).'
+    },
+    digitalAnswer: {
+      expected: ['115', '115°', '115 deg'],
+      type: 'number'
+    }
+  },
+  {
+    id: 'q_stat_averages_conv_01',
+    topicId: 'stat_histograms',
+    strandId: 'statistics',
+    title: 'Statistics: Calculating the Mean',
+    prompt: 'Find the mean of the numbers:\n\\[4, \\; 7, \\; 8, \\; 9, \\; 12\\]',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Statistics', 'Mean', 'Averages', 'Morning Flash Card'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Mean = \\(\\frac{\\text{Sum of all numbers}}{\\text{Count of numbers}}\\).',
+      'Sum: \\(4 + 7 + 8 + 9 + 12 = 40\\). Count = 5.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Sum the values:',
+          math: '4 + 7 + 8 + 9 + 12 = 40',
+          markTag: 'M1 (Adding values)'
+        },
+        {
+          description: 'Divide by the number of values (5):',
+          math: '\\frac{40}{5} = 8',
+          markTag: 'A1 (Accuracy)'
+        }
+      ],
+      finalAnswer: '8',
+      examinerTips: 'Notice the difference between the mean (8), the median (8), and the range (12 - 4 = 8). In this set, all three happen to be 8!'
+    },
+    digitalAnswer: {
+      expected: ['8'],
+      type: 'number'
+    }
+  },
+  {
+    id: 'q_num_fractions_conv_01',
+    topicId: 'alg_fractions',
+    strandId: 'number',
+    title: 'Fractions: Multiplying and Simplifying',
+    prompt: 'Work out and give your answer in its simplest form:\n\\[\\frac{3}{5} \\times \\frac{10}{9}\\]',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Fractions', 'Arithmetic', 'Simplifying', 'Morning Flash Card'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Multiply the numerators together and the denominators together, or cancel common factors first!',
+      'Notice \\(3\\) and \\(9\\) both divide by 3, and \\(10\\) and \\(5\\) both divide by 5.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Cross-cancel common factors before multiplying:',
+          math: '\\frac{\\cancel{3}^1}{\\cancel{5}_1} \\times \\frac{\\cancel{10}^2}{\\cancel{9}_3} = \\frac{1 \\times 2}{1 \\times 3}',
+          markTag: 'M1 (Simplification method)'
+        },
+        {
+          description: 'Compute final fraction:',
+          math: '\\frac{2}{3}',
+          markTag: 'A1 (Simplest form)'
+        }
+      ],
+      finalAnswer: '\\frac{2}{3}',
+      examinerTips: 'Cancelling before multiplying avoids large numbers like 30/45 which are easier to miscalculate under time pressure.'
+    },
+    digitalAnswer: {
+      expected: ['2/3'],
+      type: 'fraction'
+    }
+  },
+  {
+    id: 'q_num_standard_form_conv_01',
+    topicId: 'num_indices',
+    strandId: 'number',
+    title: 'Standard Form: Converting Small Decimals',
+    prompt: 'Write \\(0.00045\\) in standard index form \\(A \\times 10^n\\).',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Standard Form', 'Indices', 'Morning Flash Card'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Standard form requires \\(1 \\le A < 10\\). Here, \\(A = 4.5\\).',
+      'Count how many places the decimal point moves to get from 0.00045 to 4.5.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Identify the value of A such that \\(1 \\le A < 10\\):',
+          math: 'A = 4.5',
+          markTag: 'B1'
+        },
+        {
+          description: 'Determine the power of 10 by counting decimal shift (4 places to the right):',
+          math: '4.5 \\times 10^{-4}',
+          markTag: 'B1'
+        }
+      ],
+      finalAnswer: '4.5 \\times 10^{-4}',
+      examinerTips: 'Because 0.00045 is less than 1, the exponent must be negative (-4).'
+    },
+    digitalAnswer: {
+      expected: ['4.5 * 10^-4', '4.5x10^-4', '4.5*10^-4'],
+      type: 'text'
+    }
+  },
+  {
+    id: 'q_alg_linear_eq_conv_01',
+    topicId: 'alg_quadratics',
+    strandId: 'algebra',
+    title: 'Linear Equations: Two-Step Solving',
+    prompt: 'Solve the equation:\n\\[3x + 7 = 25\\]',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Linear Equations', 'Algebra', 'Solving', 'Morning Flash Card'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'First subtract 7 from both sides to isolate the \\(3x\\) term.',
+      'Then divide both sides by 3.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'Subtract 7 from both sides:',
+          math: '3x = 25 - 7 = 18',
+          markTag: 'M1 (Isolating variable term)'
+        },
+        {
+          description: 'Divide both sides by 3:',
+          math: 'x = \\frac{18}{3} = 6',
+          markTag: 'A1 (Correct solution)'
+        }
+      ],
+      finalAnswer: 'x = 6',
+      examinerTips: 'Always check by substituting: 3(6) + 7 = 18 + 7 = 25. Takes 5 seconds and guarantees the mark!'
+    },
+    digitalAnswer: {
+      expected: ['6', 'x=6', 'x = 6'],
+      type: 'number'
+    }
+  },
+  {
+    id: 'q_geo_circle_conv_01',
+    topicId: 'geo_pythagoras',
+    strandId: 'geometry',
+    title: 'Circle Geometry: Circumference in Terms of Pi',
+    prompt: 'A circle has a diameter of \\(14\\text{ cm}\\).\n\nFind the circumference of the circle. Give your exact answer in terms of \\(\\pi\\).',
+    maxMarks: 2,
+    calculatorAllowed: false,
+    difficulty: 'grade_5_6',
+    tags: ['Circles', 'Circumference', 'Geometry', 'Morning Flash Card'],
+    isMorningQuickEligible: true,
+    citation: {
+      sourceType: 'custom_stretch',
+      sourceLabel: 'Standard GCSE Practice • Foundation-to-Higher',
+      isOfficialPublicArchive: false
+    },
+    hints: [
+      'Circumference formula: \\(C = \\pi d\\) or \\(C = 2\\pi r\\).',
+      'The diameter is given as 14 cm. Keep \\(\\pi\\) in your answer.'
+    ],
+    solution: {
+      steps: [
+        {
+          description: 'State and apply the circumference formula with \\(d = 14\\):',
+          math: 'C = \\pi \\times d = \\pi \\times 14',
+          markTag: 'M1 (Formula application)'
+        },
+        {
+          description: 'Write in conventional order:',
+          math: 'C = 14\\pi\\text{ cm}',
+          markTag: 'A1 (Exact value in terms of \\(\\pi\\))'
+        }
+      ],
+      finalAnswer: '14\\pi\\text{ cm}',
+      examinerTips: 'When asked for "in terms of \\(\\pi\\)", do not calculate with 3.142! Simply leave \\(\\pi\\) as a symbol.'
+    },
+    digitalAnswer: {
+      expected: ['14pi', '14\\pi', '14 pi'],
+      type: 'text'
+    }
   }
 ];
+

@@ -127,18 +127,39 @@ export class GeneratorService {
     return scored.slice(0, count).map(s => s.question);
   }
 
-  static getMorningQuickQuestion(difficulty: DifficultyLevel): Question {
-    // Filter for rapid morning questions (5-10 min)
+  /**
+   * Return a quick, confidence-boosting morning warm-up question.
+   * By default, returns accessible Grade 5-6 warm-up questions (1-3 marks) to build momentum before school.
+   * Can optionally target Grade 7 fluency if requested.
+   * Never serves 4-5 mark lateral challenge puzzles or Grade 8/9 proofs in the morning.
+   */
+  static getMorningQuickQuestion(
+    preferredDifficulty: DifficultyLevel | 'grade_5_6' | 'grade_7' = 'grade_5_6',
+    excludeId?: string
+  ): Question {
     const all = this.getAllQuestions();
+    // Exclusively draw from questions marked isMorningQuickEligible
     let pool = all.filter(q => q.isMorningQuickEligible);
-
-    // Try to match student difficulty
-    const targeted = pool.filter(q => q.difficulty === difficulty);
-    if (targeted.length > 0) {
-      return targeted[Math.floor(Math.random() * targeted.length)];
+    if (excludeId) {
+      const nonCurrent = pool.filter(q => q.id !== excludeId);
+      if (nonCurrent.length > 0) pool = nonCurrent;
     }
 
-    // Fallback to any morning eligible question
+    // If requested Grade 7 explicitly, try to find Grade 7 quick questions
+    if (preferredDifficulty === 'grade_7') {
+      const g7Pool = pool.filter(q => q.difficulty === 'grade_7');
+      if (g7Pool.length > 0) {
+        return g7Pool[Math.floor(Math.random() * g7Pool.length)];
+      }
+    }
+
+    // Default to Grade 5-6 warm-ups (procedural fluency, accessible confidence builders)
+    const easyWarmups = pool.filter(q => q.difficulty === 'grade_5_6');
+    if (easyWarmups.length > 0) {
+      return easyWarmups[Math.floor(Math.random() * easyWarmups.length)];
+    }
+
+    // Fallback: any morning-eligible question
     return pool[Math.floor(Math.random() * pool.length)] || all[0];
   }
 
