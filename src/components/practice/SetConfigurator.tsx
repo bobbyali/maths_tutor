@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SetGenerationOptions } from '../../services/generatorService';
 import { TOPICS, STRANDS } from '../../data/curriculumData';
 import { DifficultyLevel } from '../../types/curriculum';
 import { StudentProfile } from '../../types/student';
-import { Sliders, Sparkles, Compass, Lightbulb, BookOpen } from 'lucide-react';
+import { Sliders, Sparkles, Lightbulb, BookOpen, CheckCircle2, Loader2 } from 'lucide-react';
 
 interface SetConfiguratorProps {
   student: StudentProfile;
@@ -22,15 +22,42 @@ export const SetConfigurator: React.FC<SetConfiguratorProps> = ({
   const [count, setCount] = useState<number>(3);
   const [calcAllowed, setCalcAllowed] = useState<boolean | 'any'>('any');
 
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
+
+  // Sync if initialTopicId changes externally (e.g. from curriculum page or focus-next card)
+  useEffect(() => {
+    if (initialTopicId) {
+      setSelectedTopicId(initialTopicId);
+      setMode('topic');
+    }
+  }, [initialTopicId]);
+
   const handleGenerate = (e: React.FormEvent) => {
     e.preventDefault();
-    onGenerate({
-      mode,
-      topicId: mode === 'topic' ? selectedTopicId : undefined,
-      difficulty: difficulty === 'all' ? undefined : difficulty,
-      count,
-      calculatorAllowed: calcAllowed
-    });
+    setIsGenerating(true);
+    setFeedbackMessage(null);
+
+    // Provide immediate responsive feedback with quick animation
+    setTimeout(() => {
+      onGenerate({
+        mode,
+        topicId: mode === 'topic' ? selectedTopicId : undefined,
+        difficulty: difficulty === 'all' ? undefined : difficulty,
+        count,
+        calculatorAllowed: calcAllowed
+      });
+      setIsGenerating(false);
+      setFeedbackMessage(`✓ Problem set ready! Generated ${count} questions.`);
+
+      // Smooth scroll down to questions container
+      setTimeout(() => {
+        const el = document.getElementById('problem-set-container');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }, 250);
   };
 
   return (
@@ -84,7 +111,10 @@ export const SetConfigurator: React.FC<SetConfiguratorProps> = ({
                 <button
                   key={item.id}
                   type="button"
-                  onClick={() => setMode(item.id as any)}
+                  onClick={() => {
+                    setMode(item.id as any);
+                    setFeedbackMessage(null);
+                  }}
                   className={`flex flex-col items-start p-4 rounded-2xl border text-left transition-all ${
                     isSelected
                       ? 'border-brand-500 bg-brand-50/60 ring-2 ring-brand-500/20'
@@ -110,7 +140,10 @@ export const SetConfigurator: React.FC<SetConfiguratorProps> = ({
             </label>
             <select
               value={selectedTopicId}
-              onChange={e => setSelectedTopicId(e.target.value)}
+              onChange={e => {
+                setSelectedTopicId(e.target.value);
+                setFeedbackMessage(null);
+              }}
               className="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm font-semibold bg-white text-slate-800"
             >
               {STRANDS.map(strand => {
@@ -138,7 +171,10 @@ export const SetConfigurator: React.FC<SetConfiguratorProps> = ({
             </label>
             <select
               value={difficulty}
-              onChange={e => setDifficulty(e.target.value as any)}
+              onChange={e => {
+                setDifficulty(e.target.value as any);
+                setFeedbackMessage(null);
+              }}
               className="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm font-medium bg-white text-slate-800"
             >
               <option value="all">Any Suitable Tier</option>
@@ -158,7 +194,10 @@ export const SetConfigurator: React.FC<SetConfiguratorProps> = ({
                 <button
                   key={n}
                   type="button"
-                  onClick={() => setCount(n)}
+                  onClick={() => {
+                    setCount(n);
+                    setFeedbackMessage(null);
+                  }}
                   className={`py-2 rounded-xl text-sm font-bold border transition-all ${
                     count === n
                       ? 'bg-brand-600 text-white border-brand-600 shadow-xs'
@@ -180,6 +219,7 @@ export const SetConfigurator: React.FC<SetConfiguratorProps> = ({
               onChange={e => {
                 const val = e.target.value;
                 setCalcAllowed(val === 'any' ? 'any' : val === 'calc');
+                setFeedbackMessage(null);
               }}
               className="w-full px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm font-medium bg-white text-slate-800"
             >
@@ -190,15 +230,36 @@ export const SetConfigurator: React.FC<SetConfiguratorProps> = ({
           </div>
         </div>
 
-        {/* Generate Button */}
-        <div className="pt-2">
+        {/* Generate Button & Feedback Message */}
+        <div className="pt-2 space-y-3">
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white text-base font-bold shadow-md hover:shadow-lg transition-all active:scale-[0.99]"
+            disabled={isGenerating}
+            className={`w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl text-white text-base font-bold shadow-md hover:shadow-lg transition-all active:scale-[0.99] ${
+              isGenerating
+                ? 'bg-brand-400 cursor-wait'
+                : 'bg-brand-600 hover:bg-brand-700'
+            }`}
           >
-            <Sparkles className="w-5 h-5" />
-            Generate Problem Set ({count} Questions)
+            {isGenerating ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                <span>Generating Problem Set...</span>
+              </>
+            ) : (
+              <>
+                <Sparkles className="w-5 h-5" />
+                <span>Generate Problem Set ({count} Questions)</span>
+              </>
+            )}
           </button>
+
+          {feedbackMessage && (
+            <div className="flex items-center justify-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 py-2.5 px-4 rounded-xl animate-fadeIn">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <span>{feedbackMessage}</span>
+            </div>
+          )}
         </div>
       </form>
     </div>

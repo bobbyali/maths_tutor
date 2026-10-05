@@ -17,35 +17,58 @@ export class GeneratorService {
   }
 
   static generateProblemSet(options: SetGenerationOptions): Question[] {
-    let pool: Question[] = [...QUESTION_BANK];
+    let chosen: Question[] = [];
 
     if (options.mode === 'topic' && options.topicId) {
-      pool = pool.filter(q => q.topicId === options.topicId);
+      // 1. Direct matches for the requested topic
+      const topicMatches = QUESTION_BANK.filter(q => q.topicId === options.topicId);
+      chosen.push(...topicMatches);
+
+      // 2. If we need more questions to fulfill the count, pull from the same strand
+      if (chosen.length < options.count) {
+        const topicMeta = TOPICS.find(t => t.id === options.topicId);
+        const strandId = topicMeta?.strandId;
+        if (strandId) {
+          const strandMatches = QUESTION_BANK.filter(
+            q => q.strandId === strandId && !chosen.some(c => c.id === q.id)
+          );
+          // Shuffle strand matches
+          const shuffledStrand = [...strandMatches].sort(() => 0.5 - Math.random());
+          chosen.push(...shuffledStrand.slice(0, options.count - chosen.length));
+        }
+      }
+
+      // 3. Fallback if still under count
+      if (chosen.length < options.count) {
+        const remaining = QUESTION_BANK.filter(q => !chosen.some(c => c.id === q.id));
+        const shuffledRemaining = [...remaining].sort(() => 0.5 - Math.random());
+        chosen.push(...shuffledRemaining.slice(0, options.count - chosen.length));
+      }
     } else if (options.mode === 'mixed_gcse') {
       // Pick higher tier GCSE questions across Number, Algebra, Geometry
-      pool = pool.filter(q => q.difficulty === 'grade_7' || q.difficulty === 'grade_8_9');
+      const pool = QUESTION_BANK.filter(q => q.difficulty === 'grade_7' || q.difficulty === 'grade_8_9');
+      const shuffled = [...pool].sort(() => 0.5 - Math.random());
+      chosen = shuffled.slice(0, Math.min(options.count, pool.length));
     } else if (options.mode === 'ukmt') {
       // Pick lateral challenge questions
-      pool = pool.filter(q => q.difficulty === 'ukmt_junior' || q.difficulty === 'ukmt_intermediate');
+      const pool = QUESTION_BANK.filter(q => q.difficulty === 'ukmt_junior' || q.difficulty === 'ukmt_intermediate');
+      const shuffled = [...pool].sort(() => 0.5 - Math.random());
+      chosen = shuffled.slice(0, Math.min(options.count, pool.length));
+    } else {
+      const shuffled = [...QUESTION_BANK].sort(() => 0.5 - Math.random());
+      chosen = shuffled.slice(0, Math.min(options.count, QUESTION_BANK.length));
     }
 
-    if (options.difficulty) {
-      const diffMatches = pool.filter(q => q.difficulty === options.difficulty);
-      if (diffMatches.length > 0) {
-        pool = diffMatches;
-      }
-    }
-
+    // Filter by calculator if explicitly requested
     if (options.calculatorAllowed !== undefined && options.calculatorAllowed !== 'any') {
-      const calcMatches = pool.filter(q => q.calculatorAllowed === options.calculatorAllowed);
-      if (calcMatches.length > 0) {
-        pool = calcMatches;
+      const calcFiltered = chosen.filter(q => q.calculatorAllowed === options.calculatorAllowed);
+      if (calcFiltered.length > 0) {
+        chosen = calcFiltered;
       }
     }
 
-    // Shuffle and pick desired count
-    const shuffled = [...pool].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, Math.min(options.count, shuffled.length));
+    // Always shuffle the final selection to ensure variation on repeated clicks
+    return [...chosen].sort(() => 0.5 - Math.random());
   }
 
   static getMorningQuickQuestion(difficulty: DifficultyLevel): Question {

@@ -293,7 +293,7 @@ export const App: React.FC = () => {
 
                 {/* Generated Problem Set Display */}
                 {problemSet.length > 0 && (
-                  <div className="space-y-6">
+                  <div id="problem-set-container" className="space-y-6 scroll-mt-20">
                     {/* Action Bar for Set */}
                     <div className="bg-slate-900 text-white rounded-3xl p-5 sm:p-6 shadow-md flex flex-wrap items-center justify-between gap-4">
                       <div>
