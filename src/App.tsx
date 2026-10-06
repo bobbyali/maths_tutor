@@ -184,6 +184,20 @@ export const App: React.FC = () => {
     }, 100);
   };
 
+  const handleRevisitSessionQuestions = (questions: Question[]) => {
+    if (questions.length === 0) return;
+    setProblemSet(questions);
+    setCurrentTopicId(questions[0]?.topicId);
+    changeTab('practice');
+
+    setTimeout(() => {
+      const el = document.getElementById('problem-set-container');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
   if (!activeStudent) {
     return <div className="p-12 text-center text-slate-500">Loading student profiles...</div>;
   }
@@ -521,6 +535,8 @@ export const App: React.FC = () => {
                 <SessionHistory
                   student={activeStudent}
                   onDataRefresh={handleDataRefresh}
+                  onRevisitQuestions={handleRevisitSessionQuestions}
+                  onRecommendSimilar={handleRecommendSimilar}
                 />
               </section>
             </div>

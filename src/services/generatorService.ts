@@ -167,4 +167,19 @@ export class GeneratorService {
     const topic = TOPICS.find(t => t.id === topicId);
     return topic ? topic.title : 'General Maths Stretch';
   }
+
+  static getQuestionById(id: string): Question | undefined {
+    return this.getAllQuestions().find(q => q.id === id);
+  }
+
+  static getQuestionsByIds(ids: string[]): Question[] {
+    const all = this.getAllQuestions();
+    const map = new Map(all.map(q => [q.id, q]));
+    const result: Question[] = [];
+    for (const id of ids) {
+      const found = map.get(id);
+      if (found) result.push(found);
+    }
+    return result;
+  }
 }
