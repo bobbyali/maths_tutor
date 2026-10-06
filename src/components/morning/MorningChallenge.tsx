@@ -15,7 +15,8 @@ import {
   CheckCircle2, 
   RefreshCw, 
   Sparkles,
-  ChevronRight
+  ChevronRight,
+  SkipForward
 } from 'lucide-react';
 
 interface MorningChallengeProps {
@@ -88,9 +89,10 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
     return `${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
-  const handleRecordResult = (resultType: 'nailed_it' | 'needed_hint' | 'concept_gap') => {
+  const handleRecordResult = (resultType: 'nailed_it' | 'needed_hint' | 'concept_gap' | 'skipped') => {
     if (!question) return;
 
+    const isSkipped = resultType === 'skipped';
     // Record session
     const earnedMarks = resultType === 'nailed_it' 
       ? question.maxMarks 
@@ -106,11 +108,13 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
       mode: 'morning_quick',
       topicId: question.topicId,
       topicTitle: GeneratorService.getTopicTitle(question.topicId),
-      questionsAttempted: 1,
+      questionsAttempted: isSkipped ? 0 : 1,
       totalMarks: question.maxMarks,
       earnedMarks,
-      percentage: Math.round((earnedMarks / question.maxMarks) * 100),
-      tutorNotes: `Morning Quick Stretch: ${resultType === 'nailed_it' ? 'Completed independently in morning drill.' : resultType === 'needed_hint' ? 'Needed a clue to spot key step.' : 'Challenging morning puzzle - plan for weekend session.'}`,
+      percentage: isSkipped ? 0 : Math.round((earnedMarks / question.maxMarks) * 100),
+      tutorNotes: isSkipped
+        ? `Morning Warm-up: Question was skipped by ${student.name}.`
+        : `Morning Quick Warm-up: ${resultType === 'nailed_it' ? 'Completed independently in morning drill.' : resultType === 'needed_hint' ? 'Needed a clue to spot key step.' : 'Challenging morning puzzle - plan for weekend session.'}`,
       questionResults: [
         {
           questionId: question.id,
@@ -121,15 +125,17 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
       ]
     });
 
-    // Update streak
-    StorageService.recordMorningCompletion(student.id);
+    if (!isSkipped) {
+      // Update streak
+      StorageService.recordMorningCompletion(student.id);
 
-    // Fire celebratory confetti!
-    confetti({
-      particleCount: 50,
-      spread: 60,
-      origin: { y: 0.6 }
-    });
+      // Fire celebratory confetti!
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: { y: 0.6 }
+      });
+    }
 
     setLoggedStatus(resultType);
     onDataRefresh();
@@ -424,31 +430,48 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
           </p>
 
           {loggedStatus ? (
-            <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex items-center justify-between animate-fadeIn">
-              <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                <span>Logged to {student.name}'s history & streak! 🔥</span>
+            <div className={`border rounded-2xl p-4 flex items-center justify-between animate-fadeIn ${
+              loggedStatus === 'skipped'
+                ? 'bg-slate-50 border-slate-200'
+                : 'bg-emerald-50 border-emerald-200'
+            }`}>
+              <div className="flex items-center gap-2 font-bold text-sm">
+                {loggedStatus === 'skipped' ? (
+                  <>
+                    <SkipForward className="w-5 h-5 text-slate-500" />
+                    <span className="text-slate-700">Question recorded as skipped for {student.name}.</span>
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                    <span className="text-emerald-800">Logged to {student.name}'s history & streak! 🔥</span>
+                  </>
+                )}
               </div>
               <button
                 onClick={() => loadNewQuestion()}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition-all shadow-xs"
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all shadow-xs cursor-pointer ${
+                  loggedStatus === 'skipped'
+                    ? 'bg-slate-800 hover:bg-slate-900 text-white'
+                    : 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                }`}
               >
                 <RefreshCw className="w-3.5 h-3.5" /> Next Question
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
               <button
                 onClick={() => handleRecordResult('nailed_it')}
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-xs transition-transform active:scale-95"
+                className="flex items-center justify-center gap-2 py-3 px-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-xs transition-transform active:scale-95 cursor-pointer"
               >
                 <Sparkles className="w-4 h-4" />
-                Nailed it! (Full Marks)
+                Nailed it!
               </button>
 
               <button
                 onClick={() => handleRecordResult('needed_hint')}
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white text-xs sm:text-sm font-bold shadow-xs transition-transform active:scale-95"
+                className="flex items-center justify-center gap-2 py-3 px-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white text-xs sm:text-sm font-bold shadow-xs transition-transform active:scale-95 cursor-pointer"
               >
                 <HelpCircle className="w-4 h-4" />
                 Needed a Hint
@@ -456,9 +479,18 @@ export const MorningChallenge: React.FC<MorningChallengeProps> = ({
 
               <button
                 onClick={() => handleRecordResult('concept_gap')}
-                className="flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-bold transition-transform active:scale-95"
+                className="flex items-center justify-center gap-2 py-3 px-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-bold transition-transform active:scale-95 cursor-pointer"
               >
-                Review on Weekend
+                Review Later
+              </button>
+
+              <button
+                onClick={() => handleRecordResult('skipped')}
+                className="flex items-center justify-center gap-2 py-3 px-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs sm:text-sm font-bold transition-transform active:scale-95 cursor-pointer"
+                title="Mark this question as skipped / not attempted"
+              >
+                <SkipForward className="w-4 h-4 text-slate-500" />
+                Skipped Question
               </button>
             </div>
           )}

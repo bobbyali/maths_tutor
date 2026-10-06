@@ -4,7 +4,7 @@ import { StudentProfile } from '../../types/student';
 import { PerformanceRating, QuestionResult } from '../../types/session';
 import { StorageService } from '../../services/storageService';
 import { GeneratorService } from '../../services/generatorService';
-import { X, Users, Copy, CheckCircle2, Sparkles, MessageSquare, ArrowRight } from 'lucide-react';
+import { X, Users, Copy, CheckCircle2, Sparkles, MessageSquare, ArrowRight, SkipForward } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface MarkingLoggerModalProps {
@@ -102,35 +102,59 @@ export const MarkingLoggerModal: React.FC<MarkingLoggerModalProps> = ({
   const percentage = Math.round((earnedTotalMarks / totalMaxMarks) * 100);
 
   const handleSetMarks = (qId: string, marks: number) => {
-    setStudentRecords(prev => ({
-      ...prev,
-      [focusedStudentId]: {
-        ...prev[focusedStudentId],
-        results: {
-          ...prev[focusedStudentId].results,
-          [qId]: {
-            ...prev[focusedStudentId].results[qId],
-            marks
+    setStudentRecords(prev => {
+      const current = prev[focusedStudentId]?.results[qId];
+      const q = questions.find(item => item.id === qId);
+      let newRating = current?.rating;
+      // If marks are awarded to a previously skipped question, unmark as skipped
+      if (marks > 0 && current?.rating === 'skipped') {
+        newRating = q && marks === q.maxMarks ? 'nailed_it' : 'minor_slip';
+      }
+
+      return {
+        ...prev,
+        [focusedStudentId]: {
+          ...prev[focusedStudentId],
+          results: {
+            ...prev[focusedStudentId].results,
+            [qId]: {
+              ...prev[focusedStudentId].results[qId],
+              marks,
+              rating: newRating || 'nailed_it'
+            }
           }
         }
-      }
-    }));
+      };
+    });
   };
 
   const handleSetRating = (qId: string, rating: PerformanceRating) => {
-    setStudentRecords(prev => ({
-      ...prev,
-      [focusedStudentId]: {
-        ...prev[focusedStudentId],
-        results: {
-          ...prev[focusedStudentId].results,
-          [qId]: {
-            ...prev[focusedStudentId].results[qId],
-            rating
+    setStudentRecords(prev => {
+      const q = questions.find(item => item.id === qId);
+      const current = prev[focusedStudentId]?.results[qId];
+      let newMarks = current?.marks ?? (q?.maxMarks || 0);
+
+      if (rating === 'skipped') {
+        newMarks = 0;
+      } else if (current?.rating === 'skipped' && newMarks === 0 && q) {
+        newMarks = rating === 'nailed_it' ? q.maxMarks : Math.max(0, q.maxMarks - 1);
+      }
+
+      return {
+        ...prev,
+        [focusedStudentId]: {
+          ...prev[focusedStudentId],
+          results: {
+            ...prev[focusedStudentId].results,
+            [qId]: {
+              ...prev[focusedStudentId].results[qId],
+              rating,
+              marks: newMarks
+            }
           }
         }
-      }
-    }));
+      };
+    });
   };
 
   const handleSetTutorNotes = (notes: string) => {
@@ -185,6 +209,8 @@ export const MarkingLoggerModal: React.FC<MarkingLoggerModalProps> = ({
         note: sData.results[q.id]?.note || undefined
       }));
 
+      const attemptedCount = questionResults.filter(r => r.rating !== 'skipped').length;
+
       StorageService.saveSession({
         id: `session_${Date.now()}_${index}`,
         studentId: sId,
@@ -193,7 +219,7 @@ export const MarkingLoggerModal: React.FC<MarkingLoggerModalProps> = ({
         mode: topicId ? 'topic_set' : 'mixed_stretch',
         topicId: topicId || questions[0]?.topicId,
         topicTitle: topicId ? GeneratorService.getTopicTitle(topicId) : 'Mixed GCSE Stretch',
-        questionsAttempted: questions.length,
+        questionsAttempted: attemptedCount,
         totalMarks: totalMaxMarks,
         earnedMarks: sEarned,
         percentage: sPct,
@@ -335,6 +361,17 @@ export const MarkingLoggerModal: React.FC<MarkingLoggerModalProps> = ({
               <span className="text-2xl font-black text-brand-900">
                 {earnedTotalMarks} / {totalMaxMarks} <span className="text-sm font-semibold text-brand-600">({percentage}%)</span>
               </span>
+              {(() => {
+                const skippedCount = questions.filter(q => currentData.results[q.id]?.rating === 'skipped').length;
+                if (skippedCount > 0) {
+                  return (
+                    <span className="text-[11px] font-bold text-slate-500 block mt-0.5">
+                      {questions.length - skippedCount} of {questions.length} attempted ({skippedCount} skipped)
+                    </span>
+                  );
+                }
+                return null;
+              })()}
             </div>
           </div>
 
@@ -355,9 +392,16 @@ export const MarkingLoggerModal: React.FC<MarkingLoggerModalProps> = ({
                     <span className="text-sm font-bold text-slate-800">
                       Q{idx + 1}: {q.title}
                     </span>
-                    <span className="text-xs font-semibold text-slate-500">
-                      Max: {q.maxMarks} marks
-                    </span>
+                    <div className="flex items-center gap-2">
+                      {currentRes.rating === 'skipped' && (
+                        <span className="text-[11px] font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 border border-slate-200 flex items-center gap-1">
+                          <SkipForward className="w-3 h-3 text-slate-500" /> Skipped
+                        </span>
+                      )}
+                      <span className="text-xs font-semibold text-slate-500">
+                        Max: {q.maxMarks} marks
+                      </span>
+                    </div>
                   </div>
 
                   {/* Marks selector */}
@@ -368,33 +412,41 @@ export const MarkingLoggerModal: React.FC<MarkingLoggerModalProps> = ({
                         key={mark}
                         type="button"
                         onClick={() => handleSetMarks(q.id, mark)}
-                        className={`w-8 h-8 rounded-lg text-xs font-bold border transition-all ${
+                        className={`w-8 h-8 rounded-lg text-xs font-bold border transition-all cursor-pointer ${
                           currentRes.marks === mark
-                            ? 'bg-brand-600 text-white border-brand-600'
+                            ? currentRes.rating === 'skipped'
+                              ? 'bg-slate-700 text-white border-slate-700'
+                              : 'bg-brand-600 text-white border-brand-600'
                             : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
                         {mark}
                       </button>
                     ))}
+                    {currentRes.rating === 'skipped' && (
+                      <span className="text-xs text-slate-400 italic ml-2">
+                        (0 marks assigned because question was skipped)
+                      </span>
+                    )}
                   </div>
 
                   {/* Qualitative Rating */}
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="text-xs font-semibold text-slate-500 mr-2">Method:</span>
+                    <span className="text-xs font-semibold text-slate-500 mr-2">Method / Status:</span>
                     {[
-                      { id: 'nailed_it', label: 'Nailed it', color: 'emerald' },
-                      { id: 'minor_slip', label: 'Minor Slip', color: 'amber' },
-                      { id: 'needed_hint', label: 'Needed Hint', color: 'blue' },
-                      { id: 'concept_gap', label: 'Concept Gap', color: 'rose' }
+                      { id: 'nailed_it', label: 'Nailed it', active: 'bg-emerald-600 text-white border-emerald-600' },
+                      { id: 'minor_slip', label: 'Minor Slip', active: 'bg-amber-600 text-white border-amber-600' },
+                      { id: 'needed_hint', label: 'Needed Hint', active: 'bg-blue-600 text-white border-blue-600' },
+                      { id: 'concept_gap', label: 'Concept Gap', active: 'bg-rose-600 text-white border-rose-600' },
+                      { id: 'skipped', label: '⏭️ Skipped', active: 'bg-slate-800 text-white border-slate-800' }
                     ].map(rating => (
                       <button
                         key={rating.id}
                         type="button"
                         onClick={() => handleSetRating(q.id, rating.id as PerformanceRating)}
-                        className={`px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all ${
+                        className={`px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
                           currentRes.rating === rating.id
-                            ? 'bg-slate-900 text-white border-slate-900 shadow-xs'
+                            ? `${rating.active} shadow-xs font-bold`
                             : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
@@ -430,6 +482,8 @@ export const MarkingLoggerModal: React.FC<MarkingLoggerModalProps> = ({
                 'Spotted method instantly',
                 'Arithmetic slip only',
                 'Needed hint on first step',
+                'Skipped question due to time',
+                'Skipped to do easier questions first',
                 'Needs more practice on fractions',
                 'Great lateral thinking'
               ].map(phrase => (

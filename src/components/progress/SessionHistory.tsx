@@ -82,7 +82,14 @@ export const SessionHistory: React.FC<SessionHistoryProps> = ({
                 {sess.topicTitle || 'General Stretch Session'}
               </h4>
               <p className="text-xs text-slate-500 mt-0.5">
-                {sess.questionsAttempted} {sess.questionsAttempted === 1 ? 'question' : 'questions'} attempted
+                {(() => {
+                  const totalCount = sess.questionResults?.length || sess.questionsAttempted;
+                  const skippedCount = sess.questionResults?.filter(qr => qr.rating === 'skipped').length || 0;
+                  if (skippedCount > 0) {
+                    return `${sess.questionsAttempted} of ${totalCount} attempted (${skippedCount} skipped)`;
+                  }
+                  return `${sess.questionsAttempted} ${sess.questionsAttempted === 1 ? 'question' : 'questions'} attempted`;
+                })()}
               </p>
             </div>
 
@@ -100,22 +107,30 @@ export const SessionHistory: React.FC<SessionHistoryProps> = ({
             {/* Question Badges */}
             {sess.questionResults && sess.questionResults.length > 0 && (
               <div className="flex flex-wrap gap-2 pt-1">
-                {sess.questionResults.map((qr, i) => (
-                  <span
-                    key={i}
-                    className={`text-[11px] font-semibold px-2.5 py-1 rounded-xl border ${
-                      qr.rating === 'nailed_it'
-                        ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                        : qr.rating === 'minor_slip'
-                          ? 'bg-amber-50 text-amber-800 border-amber-200'
-                          : qr.rating === 'needed_hint'
-                            ? 'bg-blue-50 text-blue-800 border-blue-200'
-                            : 'bg-rose-50 text-rose-800 border-rose-200'
-                    }`}
-                  >
-                    Q{i + 1}: {qr.earnedMarks}/{qr.maxMarks} • {qr.rating.replace('_', ' ')}
-                  </span>
-                ))}
+                {sess.questionResults.map((qr, i) => {
+                  const isSkipped = qr.rating === 'skipped';
+                  return (
+                    <span
+                      key={i}
+                      className={`text-[11px] font-semibold px-2.5 py-1 rounded-xl border ${
+                        qr.rating === 'nailed_it'
+                          ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                          : qr.rating === 'minor_slip'
+                            ? 'bg-amber-50 text-amber-800 border-amber-200'
+                            : qr.rating === 'needed_hint'
+                              ? 'bg-blue-50 text-blue-800 border-blue-200'
+                              : isSkipped
+                                ? 'bg-slate-100 text-slate-600 border-slate-300'
+                                : 'bg-rose-50 text-rose-800 border-rose-200'
+                      }`}
+                    >
+                      {isSkipped
+                        ? `Q${i + 1}: Skipped`
+                        : `Q${i + 1}: ${qr.earnedMarks}/${qr.maxMarks} • ${qr.rating.replace('_', ' ')}`
+                      }
+                    </span>
+                  );
+                })}
               </div>
             )}
           </div>

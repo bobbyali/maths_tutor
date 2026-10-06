@@ -9,7 +9,8 @@ export type PerformanceRating =
   | 'nailed_it'    // Full marks, clean method
   | 'minor_slip'   // Got method right, arithmetic/sign slip
   | 'needed_hint'  // Needed 1 or more hints to proceed
-  | 'concept_gap'; // Did not understand concept, needs review
+  | 'concept_gap'  // Did not understand concept, needs review
+  | 'skipped';     // Skipped / not attempted
 
 export interface QuestionResult {
   questionId: string;
